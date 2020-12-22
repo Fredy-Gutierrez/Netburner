@@ -1,0 +1,5 @@
+nblibs/debug/libraries/crypto/source/compiled_cert_key.od: \
+ C:/nburn/libraries/crypto/source/compiled_cert_key.cpp \
+ C:/nburn/nbrtos/include/predef.h
+
+C:/nburn/nbrtos/include/predef.h:

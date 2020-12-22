@@ -1,0 +1,4 @@
+nblibs/debug/nbrtos/source/aes.od: C:/nburn/nbrtos/source/aes.cpp \
+ C:/nburn/nbrtos/include/aes.h
+
+C:/nburn/nbrtos/include/aes.h:
