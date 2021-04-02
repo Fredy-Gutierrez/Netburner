@@ -1,0 +1,47 @@
+nblibs/debug/libraries/ssh/source/sshCryptoLibrary/src/ciphers/twofish/twofish.od: \
+ C:/nburn/libraries/ssh/source/sshCryptoLibrary/src/ciphers/twofish/twofish.c \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_custom.h \
+ C:/nburn/nbrtos/include/debug/debugalloc.h \
+ C:/nburn/libraries/include/ssh/options.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_cfg.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_macros.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_cipher.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_hash.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_mac.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_prng.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_pk.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_math.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_misc.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_argchk.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_pkcs.h
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_custom.h:
+
+C:/nburn/nbrtos/include/debug/debugalloc.h:
+
+C:/nburn/libraries/include/ssh/options.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_cfg.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_macros.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_cipher.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_hash.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_mac.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_prng.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_pk.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_math.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_misc.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_argchk.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_pkcs.h:

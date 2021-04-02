@@ -1,0 +1,14 @@
+nblibs/debug/libraries/ssh/source/sshMathLibrary/bn_mp_cmp_mag.od: \
+ C:/nburn/libraries/ssh/source/sshMathLibrary/bn_mp_cmp_mag.c \
+ C:/nburn/libraries/include/ssh/sshMathLibrary/tommath.h \
+ C:/nburn/libraries/include/ssh/sshMathLibrary/tommath_class.h \
+ C:/nburn/libraries/include/ssh/sshMathLibrary/tommath_superclass.h \
+ C:/nburn/nbrtos/include/debug/debugalloc.h
+
+C:/nburn/libraries/include/ssh/sshMathLibrary/tommath.h:
+
+C:/nburn/libraries/include/ssh/sshMathLibrary/tommath_class.h:
+
+C:/nburn/libraries/include/ssh/sshMathLibrary/tommath_superclass.h:
+
+C:/nburn/nbrtos/include/debug/debugalloc.h:

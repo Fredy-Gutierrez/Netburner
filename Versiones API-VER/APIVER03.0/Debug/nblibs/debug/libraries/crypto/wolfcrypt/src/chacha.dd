@@ -1,0 +1,35 @@
+nblibs/debug/libraries/crypto/wolfcrypt/src/chacha.od: \
+ C:/nburn/libraries/crypto/wolfcrypt/src/chacha.c \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/settings.h \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/visibility.h \
+ C:/nburn/libraries/include/crypto/platform/MODM7AE70/user_settings.h \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/chacha.h \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/types.h \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/wc_port.h \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/error-crypt.h \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/logging.h \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/cpuid.h \
+ C:/nburn/libraries/crypto/wolfcrypt/src/misc.c \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/misc.h
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/settings.h:
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/visibility.h:
+
+C:/nburn/libraries/include/crypto/platform/MODM7AE70/user_settings.h:
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/chacha.h:
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/types.h:
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/wc_port.h:
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/error-crypt.h:
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/logging.h:
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/cpuid.h:
+
+C:/nburn/libraries/crypto/wolfcrypt/src/misc.c:
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/misc.h:

@@ -1,0 +1,5 @@
+nblibs/debug/nbrtos/source/shutdown_weak.od: \
+ C:/nburn/nbrtos/source/shutdown_weak.cpp \
+ C:/nburn/nbrtos/include/ShutDownNotifications.h
+
+C:/nburn/nbrtos/include/ShutDownNotifications.h:

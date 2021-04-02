@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>
+  IntegraID
+  </title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
+  							   
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+  
+</head>
+
+<body>
+	<header>
+		<div class="menu_bar">
+			<a href="#" class="bt-menu">Integra</a>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="index.html">Inicio </a></li>
+				<li><a href="#">Controles</a></li>
+				
+				<li class="submenu">
+					<a href="#">Configuraciones<span class="caret icon-arrow-down6"></a>
+					<ul class="children">
+						<li><a href="server_config.html">Servidor POST y UDP</a></li>
+						<li><a href="sargas_config.html">Conexion del Sargas</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Contacto</a></li>
+				<li><a href="#">Integra Ingeniería y Diseño</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<div class="content-wrapper">
+	    
+	    <!-- Content Header (Page header) -->
+	    <section class="content-header">
+			<div class="col-md-12">
+				<div class="form-group" align="center">
+					<h3> Servidor POST/UDP <small> Administración </small></h3>
+					</br>
+				</div>
+			</div>
+	    </section>
+	    
+	    <!-- Main content -->
+	    <section class="content">
+	        <!-- Default box -->
+	        <div class="box box-solid" >
+	            <div class="box-body">
+	                <div class="row">
+	                
+	                    <div class="col-md-4">
+							<form action="formServerConfig" method=post>
+								<div class="box-body">
+							    	<div class="row">
+							        	<div class="col-md-12">
+							            	<div class="form-group" align="center">
+							            		<h4> <strong>SERVIDOR</strong> </h4>
+							                </div>
+							            </div>
+							    	</div>
+								</div>
+								<div class="box-body">
+							    	<div class="row">
+							        	<div class="col-md-12">
+							            	<div class="form-group" align="center">
+							                	<label for="expediente">Dirección(URL) del servidor:</label><br>
+							                    <input type="text" style=" width:300px;height:30px" class="form-control" id="server_address"  name="server_address" required>
+							                </div>
+							            </div>
+							    	</div>
+								</div>
+								<div class="box-body">
+							    	<div class="row">
+							           <div class="col-md-12">
+							                <div class="form-group" align="center">
+							                    <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>Guardar</button>
+							                </div>
+							           </div>
+							    	</div>
+								</div>
+							</form>
+						</div>
+						
+						<div class="col-md-4">
+							<form action="formUdpConfig" method=post> 
+								<div class="box-body">
+							    	<div class="row">
+							        	<div class="col-md-12">
+							            	<div class="form-group" align="center">
+							            		<h4> <strong>UDP</strong> </h4>
+							                </div>
+							            </div>
+							    	</div>
+								</div>
+								
+								<div class="box-body">
+							    	<div class="row">
+							        	<div class="col-md-12">
+							            	<div class="form-group" align="center">
+							                	<label for="expediente">Dirección IP para UDP:</label><br>
+							                    <input type="text" style=" width:300px;height:30px" class="form-control" id="udpIp"  name="udpIp" required>
+							                </div>
+							            </div>
+							    	</div>
+								</div>
+								<div class="box-body">
+							    	<div class="row">
+							        	<div class="col-md-12">
+							            	<div class="form-group" align="center">
+							                	<label for="expediente">Puerto UDP:</label><br>
+							                    <input type="text" style=" width:300px;height:30px" class="form-control" id="udpPort"  name="udpPort" required>
+							                </div>
+							            </div>
+							    	</div>
+								</div>
+								<div class="box-body">
+							    	<div class="row">
+							           <div class="col-md-12">
+							                <div class="form-group" align="center">
+							                    <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>Guardar</button>
+							                </div>
+							           </div>
+							    	</div>
+								</div>
+							</form>
+						</div>
+						
+	                </div>
+	            </div>
+	            <!-- /.box-body -->
+	        </div>
+	        <!-- /.box -->
+	    </section>
+	    <!-- /.content -->
+	</div>
+</body>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/menuResponsive.js"> </script>
+
+</html>

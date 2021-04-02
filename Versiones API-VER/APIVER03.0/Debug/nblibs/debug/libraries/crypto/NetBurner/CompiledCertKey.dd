@@ -1,0 +1,5 @@
+nblibs/debug/libraries/crypto/NetBurner/CompiledCertKey.od: \
+ C:/nburn/libraries/crypto/NetBurner/CompiledCertKey.cpp \
+ C:/nburn/nbrtos/include/predef.h
+
+C:/nburn/nbrtos/include/predef.h:

@@ -1,0 +1,20 @@
+nblibs/debug/libraries/crypto/wolfcrypt/src/cpuid.od: \
+ C:/nburn/libraries/crypto/wolfcrypt/src/cpuid.c \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/settings.h \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/visibility.h \
+ C:/nburn/libraries/include/crypto/platform/MODM7AE70/user_settings.h \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/cpuid.h \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/types.h \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/wc_port.h
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/settings.h:
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/visibility.h:
+
+C:/nburn/libraries/include/crypto/platform/MODM7AE70/user_settings.h:
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/cpuid.h:
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/types.h:
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/wc_port.h:

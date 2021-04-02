@@ -1,0 +1,155 @@
+nblibs/debug/libraries/ssh/source/dbutil.od: \
+ C:/nburn/libraries/ssh/source/dbutil.cpp \
+ C:/nburn/libraries/include/ssh/includes.h \
+ C:/nburn/nbrtos/include/predef.h \
+ C:/nburn/arch/cortex-m7/include/basictypes.h \
+ C:/nburn/arch/cortex-m7/cpu/SAME70/include/cm_core_config.h \
+ C:/nburn/arch/cortex-m7/include/core_cm7.h \
+ C:/nburn/arch/cortex-m7/include/core_cmInstr.h \
+ C:/nburn/arch/cortex-m7/include/core_cmFunc.h \
+ C:/nburn/arch/cortex-m7/include/core_cmSimd.h \
+ C:/nburn/arch/cortex-m7/include/core_cmInstr.h \
+ C:/nburn/nbrtos/include/nbrtos.h C:/nburn/nbrtos/include/constants.h \
+ C:/nburn/arch/cortex-m7/include/nbrtoscpu.h \
+ C:/nburn/arch/cortex-m7/include/core_cmFunc.h \
+ C:/nburn/nbrtos/include/utils.h C:/nburn/nbrtos/include/nettypes.h \
+ C:/nburn/nbrtos/include/ipv6/ipv6_addr.h \
+ C:/nburn/nbrtos/include/nbprintfinternal.h \
+ C:/nburn/nbrtos/include/nettypes.h C:/nburn/nbrtos/include/iosys.h \
+ C:/nburn/nbrtos/include/buffers.h \
+ C:/nburn/libraries/include/ssh/dropbearPort.h \
+ C:/nburn/libraries/include/ssh/config.h \
+ C:/nburn/libraries/include/ssh/options.h \
+ C:/nburn/libraries/include/ssh/debug.h \
+ C:/nburn/libraries/include/ssh/includes.h \
+ C:/nburn/nbrtos/include/syslog.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_custom.h \
+ C:/nburn/nbrtos/include/debug/debugalloc.h \
+ C:/nburn/libraries/include/ssh/options.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_cfg.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_macros.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_cipher.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_hash.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_mac.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_prng.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_pk.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_math.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_misc.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_argchk.h \
+ C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_pkcs.h \
+ C:/nburn/libraries/include/ssh/sshMathLibrary/tommath.h \
+ C:/nburn/libraries/include/ssh/sshMathLibrary/tommath_class.h \
+ C:/nburn/libraries/include/ssh/sshMathLibrary/tommath_superclass.h \
+ C:/nburn/libraries/include/ssh/compat.h \
+ C:/nburn/libraries/include/ssh/fake-rfc2553.h \
+ C:/nburn/libraries/include/ssh/dbutil.h \
+ C:/nburn/libraries/include/ssh/buffer.h \
+ C:/nburn/libraries/include/ssh/buffer.h \
+ C:/nburn/nbrtos/include/nbssh/nbssh.h \
+ C:/nburn/libraries/include/ssh/keydss.h \
+ C:/nburn/libraries/include/ssh/keyrsa.h
+
+C:/nburn/libraries/include/ssh/includes.h:
+
+C:/nburn/nbrtos/include/predef.h:
+
+C:/nburn/arch/cortex-m7/include/basictypes.h:
+
+C:/nburn/arch/cortex-m7/cpu/SAME70/include/cm_core_config.h:
+
+C:/nburn/arch/cortex-m7/include/core_cm7.h:
+
+C:/nburn/arch/cortex-m7/include/core_cmInstr.h:
+
+C:/nburn/arch/cortex-m7/include/core_cmFunc.h:
+
+C:/nburn/arch/cortex-m7/include/core_cmSimd.h:
+
+C:/nburn/arch/cortex-m7/include/core_cmInstr.h:
+
+C:/nburn/nbrtos/include/nbrtos.h:
+
+C:/nburn/nbrtos/include/constants.h:
+
+C:/nburn/arch/cortex-m7/include/nbrtoscpu.h:
+
+C:/nburn/arch/cortex-m7/include/core_cmFunc.h:
+
+C:/nburn/nbrtos/include/utils.h:
+
+C:/nburn/nbrtos/include/nettypes.h:
+
+C:/nburn/nbrtos/include/ipv6/ipv6_addr.h:
+
+C:/nburn/nbrtos/include/nbprintfinternal.h:
+
+C:/nburn/nbrtos/include/nettypes.h:
+
+C:/nburn/nbrtos/include/iosys.h:
+
+C:/nburn/nbrtos/include/buffers.h:
+
+C:/nburn/libraries/include/ssh/dropbearPort.h:
+
+C:/nburn/libraries/include/ssh/config.h:
+
+C:/nburn/libraries/include/ssh/options.h:
+
+C:/nburn/libraries/include/ssh/debug.h:
+
+C:/nburn/libraries/include/ssh/includes.h:
+
+C:/nburn/nbrtos/include/syslog.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_custom.h:
+
+C:/nburn/nbrtos/include/debug/debugalloc.h:
+
+C:/nburn/libraries/include/ssh/options.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_cfg.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_macros.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_cipher.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_hash.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_mac.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_prng.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_pk.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_math.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_misc.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_argchk.h:
+
+C:/nburn/libraries/include/ssh/sshCryptoLibrary/tomcrypt_pkcs.h:
+
+C:/nburn/libraries/include/ssh/sshMathLibrary/tommath.h:
+
+C:/nburn/libraries/include/ssh/sshMathLibrary/tommath_class.h:
+
+C:/nburn/libraries/include/ssh/sshMathLibrary/tommath_superclass.h:
+
+C:/nburn/libraries/include/ssh/compat.h:
+
+C:/nburn/libraries/include/ssh/fake-rfc2553.h:
+
+C:/nburn/libraries/include/ssh/dbutil.h:
+
+C:/nburn/libraries/include/ssh/buffer.h:
+
+C:/nburn/libraries/include/ssh/buffer.h:
+
+C:/nburn/nbrtos/include/nbssh/nbssh.h:
+
+C:/nburn/libraries/include/ssh/keydss.h:
+
+C:/nburn/libraries/include/ssh/keyrsa.h:

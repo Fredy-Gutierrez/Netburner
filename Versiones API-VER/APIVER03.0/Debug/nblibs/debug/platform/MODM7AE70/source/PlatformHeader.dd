@@ -1,0 +1,31 @@
+nblibs/debug/platform/MODM7AE70/source/PlatformHeader.od: \
+ C:/nburn/platform/MODM7AE70/source/PlatformHeader.cpp \
+ C:/nburn/nbrtos/include/predef.h C:/nburn/nbrtos/include/constants.h \
+ C:/nburn/arch/cortex-m7/include/basictypes.h \
+ C:/nburn/arch/cortex-m7/cpu/SAME70/include/cm_core_config.h \
+ C:/nburn/arch/cortex-m7/include/core_cm7.h \
+ C:/nburn/arch/cortex-m7/include/core_cmInstr.h \
+ C:/nburn/arch/cortex-m7/include/core_cmFunc.h \
+ C:/nburn/arch/cortex-m7/include/core_cmSimd.h \
+ C:/nburn/arch/cortex-m7/include/core_cmInstr.h \
+ C:/nburn/platform/MODM7AE70/include/PlatformHeader.h
+
+C:/nburn/nbrtos/include/predef.h:
+
+C:/nburn/nbrtos/include/constants.h:
+
+C:/nburn/arch/cortex-m7/include/basictypes.h:
+
+C:/nburn/arch/cortex-m7/cpu/SAME70/include/cm_core_config.h:
+
+C:/nburn/arch/cortex-m7/include/core_cm7.h:
+
+C:/nburn/arch/cortex-m7/include/core_cmInstr.h:
+
+C:/nburn/arch/cortex-m7/include/core_cmFunc.h:
+
+C:/nburn/arch/cortex-m7/include/core_cmSimd.h:
+
+C:/nburn/arch/cortex-m7/include/core_cmInstr.h:
+
+C:/nburn/platform/MODM7AE70/include/PlatformHeader.h:

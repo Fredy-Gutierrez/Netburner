@@ -1,0 +1,11 @@
+nblibs/debug/libraries/crypto/wolfcrypt/src/md4.od: \
+ C:/nburn/libraries/crypto/wolfcrypt/src/md4.c \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/settings.h \
+ C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/visibility.h \
+ C:/nburn/libraries/include/crypto/platform/MODM7AE70/user_settings.h
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/settings.h:
+
+C:/nburn/libraries/include/crypto/wolfssl/wolfcrypt/visibility.h:
+
+C:/nburn/libraries/include/crypto/platform/MODM7AE70/user_settings.h:
