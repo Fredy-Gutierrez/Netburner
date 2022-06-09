@@ -1,0 +1,102 @@
+void createAndSaveTrain(Fifo *aarTags){
+	typeT94Aem segAem;
+	int maxSpeed = 0, minSpeed = 1000, avSpeed = 0;
+	int qtyAxlesF = 0, qtyAxlesR = 0, qtyAxlesTotal;
+	typeAxle * axle;
+	bool oneDirection = TRUE;
+	int direction;
+
+	//if there is not axles
+	if(axles.FifoSize() <= 0)
+		return;
+
+	/**************CALL TO TRAIN TO CLEAN THE BUFFERS***********************/
+	initTrain();
+
+	decEncAarToRre(aarTags);
+
+	bool r = axlesDebugging();
+
+	if(testMode){
+		setToTrainRRETags();//UNCOMMENT WHEN RRES IS FORMED WITH AXLES
+	}else{
+		logg.newPrint("\nMAKING PROFILER");
+		if(r){
+			r = trainAxlesProfile();
+		}
+
+		if(r){
+			logg.newPrint("\nRRE FORMED BY PROFILER, MATCHING AXLES' RRES WITH TAGS' RRES");
+			matchRREs();
+			qtyAxles = getTrainRreAxlesQty();
+		}else{
+			logg.newPrint("\nRRE PROFILER COULD NOT FORM THE TRAIN SETTING THE RRES TAGS");
+			setToTrainRRETags();//UNCOMMENT WHEN RRES IS FORMED WITH AXLES
+		}
+	}
+
+	qtyCars = getTrainRreQty();
+
+	if(qtyCars == 0)
+		return;
+
+	direction = axlesTrain[0].dir;
+	if(direction == 1) qtyAxlesF++; else qtyAxlesR++;
+	for(int i = 1; i < qtyAxles; i++){
+		int dir = axlesTrain[i].dir;
+		if(dir != direction){
+			oneDirection = FALSE;
+		}
+		if(dir == 1) qtyAxlesF++; else qtyAxlesR++;
+	}
+
+	if(!oneDirection){
+		if(qtyAxlesF > qtyAxlesR)
+			qtyAxlesTotal = qtyAxlesF-qtyAxlesR;
+		else
+			qtyAxlesTotal = qtyAxlesR-qtyAxlesF;
+		maxSpeed = 0;
+		minSpeed = 0;
+		avSpeed = 0;
+	}
+	else{
+		qtyAxlesTotal = qtyAxles;
+
+		for(int i = 0; i < qtyAxles; i++){
+			axle = &axlesTrain[i];
+
+			if(axle->speed > maxSpeed)
+				maxSpeed = axle->speed;
+			if(axle->speed < minSpeed)
+				minSpeed = axle->speed;
+			avSpeed += axle->speed;
+		}
+		maxSpeed = maxSpeed / 10;
+		minSpeed = minSpeed / 10;
+		avSpeed = (avSpeed / qtyAxlesTotal) / 10;
+
+	}
+	segAem.iMaxSpeed = maxSpeed;
+	segAem.iMinSpeed = minSpeed;
+	segAem.iAvSpeed = avSpeed;
+	segAem.iTotalAxleCount = qtyAxlesTotal;
+	segAem.iOneDirection = oneDirection;
+
+	if(direction == 1) segAem.directionOfTravel[0] = 'S'; else segAem.directionOfTravel[0] = 'N';
+
+	copyAeiTime(&segAem.iStartTime, &axlesTrain[0].time);
+	copyAeiTime(&segAem.iStopTime, &axlesTrain[qtyAxles-1].time);
+
+	closeTrainToSave(&segAem);
+
+	/*******************SAVE train into sd********************/
+	typeTrain * train = getTrain();
+	trainDBUserW.train = train;
+	trainDBUserW.train->reportedFlag = false;
+	while(!newRequest(&trainDBUserW)){
+		OSTimeDly(10);
+	}
+
+	//freeTrain(train);
+	logg.newPrint("\nTrain Stored in SD Card");
+}

@@ -1,0 +1,55 @@
+void DeleteLastRREFromTrain(bool subsCounters){
+	typeTrain * train = myTrain;
+	if(train->qtyRre > 0){
+
+		train->qtyRre--;
+		if(subsCounters){
+			if(train->segRre[train->qtyRre].groupCode[0] == 'D'){
+				if(train->segRre[train->qtyRre].tagStatus[0] != 'N'){
+					train->segAem.iLocomotivesTagged--;
+				}
+				train->segAem.iLocomotiveCount--;
+			}else{
+				if(train->segRre[train->qtyRre].tagStatus[0] != 'N'){
+					train->segAem.iRailcarsTagged--;
+				}
+				train->segAem.iRailcarCount--;
+			}
+
+			char axlesCount[4];
+			memcpy(axlesCount, train->segRre[train->qtyRre].axlesCount, 3);
+			axlesCount[3] = '\0';
+			trainAxlesQty -= atoi(axlesCount);
+		}
+		train->qtyBytes -= sizeof(typeT94RrePost);
+	}
+}
+
+/***********Add RRE to train rre's buffer************/
+void addRreToTrain(typeT94Rre * segRreToSave, bool addCounters){
+	typeTrain * train = myTrain;
+	if(train->qtyRre < MAX_RRE_TRAIN){
+		memcpy( &train->segRre[train->qtyRre++], segRreToSave, sizeof(typeT94Rre) );
+
+		if(addCounters){
+			if(segRreToSave->groupCode[0] == 'D'){
+				if(segRreToSave->tagStatus[0] != 'N'){
+					train->segAem.iLocomotivesTagged++;
+				}
+				train->segAem.iLocomotiveCount++;
+			}else{
+				if(segRreToSave->tagStatus[0] != 'N'){
+					train->segAem.iRailcarsTagged++;
+				}
+				train->segAem.iRailcarCount++;
+			}
+
+			char axlesCount[4];
+			memcpy(axlesCount, segRreToSave->axlesCount, 3);
+			axlesCount[3] = '\0';
+			trainAxlesQty += atoi(axlesCount);
+		}
+
+		train->qtyBytes += sizeof(typeT94RrePost);
+	}
+}

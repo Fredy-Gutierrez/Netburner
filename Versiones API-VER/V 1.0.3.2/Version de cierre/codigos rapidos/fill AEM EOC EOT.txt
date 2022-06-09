@@ -1,0 +1,136 @@
+void closeTrainToSave(typeT94Aem * segAem){
+	fillAemTrain(segAem);
+
+	//MAKING THE EOC
+	typeT94Eoc * segEoc = &myTrain->segEoc;
+	convIntToAscii(myTrain->qtyBytes, segEoc->totalBytesCount, 10);
+	segEoc->separator[0] = '&';
+
+	//TO ADD TO EOT
+	if(myTrain->hasSegEot){
+		typeT94Eot * auxEot = &myTrain->segEot;
+		convIntToAscii(myTrain->qtyRre, auxEot->sequenceNumber, 3);
+
+		//JUST TO KNOW IF EOT DATE TIME IS HIGHER THAN LAST CAR DATE TIME
+		if( cmpAeiTime(&auxEot->endTime, &myTrain->segRre[myTrain->qtyRre - 1].endTime) >= 0){
+			copyAeiTime(&segEoc->startTime, &auxEot->endTime);
+			copyAeiTime(&segEoc->endTime, &auxEot->endTime);
+		}else{
+			copyAeiTime(&segEoc->startTime, &myTrain->segRre[myTrain->qtyRre - 1].endTime);
+			copyAeiTime(&segEoc->endTime, &myTrain->segRre[myTrain->qtyRre - 1].endTime);
+		}
+	}else{
+		copyAeiTime(&segEoc->startTime, &myTrain->segRre[myTrain->qtyRre - 1].endTime);
+		copyAeiTime(&segEoc->endTime, &myTrain->segRre[myTrain->qtyRre - 1].endTime);
+	}
+
+	//This train is ready to be reported
+	myTrain->stateOfReport = stReady;
+	incrementTrainCounter();
+}
+
+void fillAemTrain(typeT94Aem * segAemToSave){
+	const char * temp;
+	char time[24];
+
+	typeT94Aem * segAem = &myTrain->segAem;
+	segAem->iMaxSpeed = segAemToSave->iMaxSpeed;
+	segAem->iMinSpeed = segAemToSave->iMinSpeed;
+	segAem->iAvSpeed = segAemToSave->iAvSpeed;
+	segAem->iTotalAxleCount = segAemToSave->iTotalAxleCount;
+	segAem->iOneDirection = segAemToSave->iOneDirection;
+	copyAeiTime( &segAem->iStartTime, &segAemToSave->iStartTime );
+	copyAeiTime( &segAem->iStopTime, &segAemToSave->iStopTime );
+
+	//segAem->iRailcarCount = segAem->iRailcarsTagged;
+	//segAem->iLocomotiveCount = segAem->iLocomotivesTagged;
+
+	temp = getAeiID();
+	for(int i = 0; i < 7; i++)
+		segAem->siteId[i] = temp[i];
+
+	convertTimeToASCII( &segAem->iStartTime, time );
+	segAem->startDate[0] = time[2];
+	segAem->startDate[1] = time[3];
+	segAem->startDate[2] = time[5];
+	segAem->startDate[3] = time[6];
+	segAem->startDate[4] = time[8];
+	segAem->startDate[5] = time[9];
+
+	segAem->startTime[0] = time[11];
+	segAem->startTime[1] = time[12];
+	segAem->startTime[2] = time[14];
+	segAem->startTime[3] = time[15];
+
+	convertTimeToASCII( &segAem->iStopTime, time);
+	segAem->stopTime[0] = time[11];
+	segAem->stopTime[1] = time[12];
+	segAem->stopTime[2] = time[14];
+	segAem->stopTime[3] = time[15];
+
+	convIntToAscii(getTrainCounter(), segAem->trainSeqNumber, 4);
+
+	if(segAem->iOneDirection){
+		//Train in one direction
+		if(segAem->iMaxSpeed > 8)
+			segAem->movementStatus[0] = 'A';
+		else
+			segAem->movementStatus[0] = 'B';
+	}
+	else
+		segAem->movementStatus[0] = 'C';
+
+	segAem->directionOfTravel[0] = segAemToSave->directionOfTravel[0];
+
+	convIntToAscii(segAem->iMaxSpeed, segAem->maxSpeed, 3);
+	convIntToAscii(segAem->iMinSpeed, segAem->minSpeed, 3);
+	convIntToAscii(segAem->iAvSpeed, segAem->avSpeed, 3);
+
+	convIntToAscii(segAem->iLocomotiveCount, segAem->locomotiveCount, 2);
+	convIntToAscii(segAem->iLocomotivesTagged, segAem->locomotivesTagged, 2);
+
+	convIntToAscii(segAem->iRailcarCount, segAem->railcarCount, 3);
+	convIntToAscii(segAem->iRailcarsTagged, segAem->railcarsTagged, 3);
+
+	convIntToAscii(segAem->iTotalAxleCount, segAem->totalAxleCount, 4);
+}
+
+void fillEot(typeAarDec * tag, int * seqNumber){
+	int antCount0 = 0, antCount1 = 0;
+	typeT94Eot * auxEot = &segEotAux;
+
+	if(tag->antennaNumber == 0){
+		antCount0 = tag->timesRead;
+	}else if(tag->antennaNumber == 1){
+		antCount1 = tag->timesRead;
+	}
+
+	auxEot->segmentID[0] = 'E';
+	auxEot->segmentID[1] = 'O';
+	auxEot->segmentID[2] = 'T';
+
+	convIntToAscii(*seqNumber, auxEot->sequenceNumber, 3);
+	auxEot->groupCode[0] = 'E';
+	for(int i = 0; i < 4; i++)
+		auxEot->ownerCode[i] = tag->equipmentInitial[i];
+	convIntToAscii(tag->carNumber, auxEot->ownerEquipmentNumber, 10);
+
+	if(antCount1 > 99){ antCount1 = 99; }
+	if(antCount0 > 99){ antCount0 = 99; }
+	convIntToAscii(antCount0, auxEot->antena0Count, 2);
+	convIntToAscii(antCount1, auxEot->antena1Count, 2);
+	auxEot->ant0Count = antCount0;
+	auxEot->ant1Count = antCount1;
+
+	copyAeiTime( &auxEot->startTime, &tag->timeFirstRead );
+	copyAeiTime( &auxEot->endTime, &tag->timeLastRead );
+
+	auxEot->tagDetailStatus[0] = 'K';
+
+	auxEot->separator[0] = '&';
+	if(* seqNumber > 1){
+		(* seqNumber)++;
+	}
+	hasEOTSeg = TRUE;
+}
+

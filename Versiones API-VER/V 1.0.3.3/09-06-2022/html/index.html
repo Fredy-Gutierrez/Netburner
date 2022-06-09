@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>
+  IntegraID
+  </title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
+  							   
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+
+</head>
+
+
+<body>
+	<header>
+		<div class="menu_bar">
+			<a href="#" class="bt-menu">Integra</a>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="index.html">Home </a></li>
+				<li><a href="reports.html">Status</a></li>
+				
+				<li class="submenu">
+					<a href="#">Configurations <span class="caret icon-arrow-down6"></a>
+					<ul class="children">
+						<li><a href="general_config.html">General</a></li>
+						<li><a href="server_config.html">Connectivities</a></li>
+						<li><a href="gpio.html">Inputs assignment</a></li>
+					</ul>
+				</li>
+				<li><a href="contacts.html">About us</a></li>
+				<li><a href="http://www.integraid.com" target="_blank">Integra Ingeniería y Diseño</a></li>
+			</ul>
+		</nav>
+	</header>
+	<div class="content-wrapper">
+	    <!-- Main content -->
+	    <section class="content">
+	        <!-- Default box -->
+	        <div class="box box-solid" >
+	            <div class="box-body">
+	            
+	            	<div class="row"><!--row HEADER-->
+		            	<div class="col-md-12">
+							<div class="form-group" align="center">
+								<div class="col-md-4">
+							     	<img src="css/img/integra.jpg" class="img-rounded" alt="Cinque Terre">
+							    </div>
+								<div class="col-md-4" >
+							     	<h3> Home <small> DashBoard </small></h3><br>
+							     	<div class="row">
+									    <div class="col">
+									      <label class="form-label">AEIID: <!--CPPCALL WebConfigAeiId --></label>
+									    </div>
+									    <div class="col">
+									    	<input type="hidden" id="AeiStatus" value="<!--CPPCALL WebConfigAeiStatus -->">
+									      	<label class="form-label">AEI Status <span class="label label-default" id="SpanStatus"><!--CPPCALL WebConfigAeiStatus --></span></label><br><br>
+									    </div>
+									</div>
+							    </div>
+							    <div class="col-md-4">
+							    	<h2>MAC30</h2><br>
+							     	<h3>VERSION: <small> <!--CPPCALL WebConfigAppVersion --> </small></h3>
+							    </div>
+							</div><!--form-group-->
+						</div><!--col12-->
+	            	</div><!--row HEADER-->
+	            	
+		            <div class="panel panel-default">
+		            	<div class="panel-heading" align="center"> <h3 class="panel-title">Information Panel</h3> </div>
+						<div class="panel-body"> 
+		                	<div class="row">
+		                    	<div class="col-md-4">
+									<div class="box-body">
+								    	<div class="row">
+								    	
+								    		<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<h3> <strong>GENERAL</strong> </h3><br>
+								                </div>
+								            </div>
+								            
+								        	<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">AEI ID:</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="AeiID" name="AeiID" value="<!--CPPCALL WebConfigAeiId -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">AEI Direction:</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="AeiDir" name="AeiDir" value="<!--CPPCALL WebConfigAeiDir -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group row" align="center">
+												    <label for="expediente" class="col-sm-4 col-form-label">LOOP RFID OnOff:</label>
+												    <div class="col-sm-8">
+												      <div class="form-check">
+												        <input class="form-check-input"  type="checkbox" id="LoopOnOff" name="LoopOnOff" <!--CPPCALL WebConfigLoopOnOff --> disabled><br>
+												      </div>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Loop Type:</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="LoopType" name="LoopType" value="<!--CPPCALL WebConfigLoopType -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Loop Time On:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="LoopTimeOn" name="LoopTimeOn" value="<!--CPPCALL WebConfigLoopTimeOn -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Loop Time Off:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="LoopTimeOff" name="LoopTimeOff" value="<!--CPPCALL WebConfigLoopTimeOff -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group row" align="center">
+												    <label for="expediente" class="col-sm-4 col-form-label">Ntp Sync OnOff:</label>
+												    <div class="col-sm-8">
+												      <div class="form-check">
+												        <input class="form-check-input"  type="checkbox" id="NtpSyncOnOff" name="NtpSyncOnOff" <!--CPPCALL WebConfigNtpSyncOnOff --> disabled><br>
+												      </div>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">NTP Server:</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="NtpServer" name="NtpServer" value="<!--CPPCALL WebConfigNtpServer -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Ntp Sync Time(Hours):</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="SyncTime" name="SyncTime" value="<!--CPPCALL WebConfigNtpSyncTime -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group row" align="center">
+												    <label for="expediente" class="col-sm-4 col-form-label">Battery Test OnOff:</label>
+												    <div class="col-sm-8">
+												      <div class="form-check">
+												        <input class="form-check-input" type="checkbox" id="BattTestOnOff" name="BattTestOnOff" <!--CPPCALL WebConfigBattTestOnOff --> disabled><br>
+												      </div>
+												    </div>
+								                </div>
+								            </div>
+								            
+								    		<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Battery Install Date:</label>
+								                	<div class="col-sm-8">
+												     	<input type="date" class="form-control" style="width:300px;height:34px" id="BateryInstallationDate" name="BateryInstallationDate" value="<!--CPPCALL WebConfigBattInstallDate -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Battery Test Period(Days):</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="BateryCycle" name="BateryCycle" value="<!--CPPCALL WebConfigBattTestPeriod -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Battery Test Hour:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="BateryTestTime" name="BateryTestTime" value="<!--CPPCALL WebConfigBattTestHour -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            
+								            <!--************** AXLES DETECTOR INFO***********-->
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label class="col-sm-4 col-form-label">Main Axles Signal Group:</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="MainADSignal" name="MainADSignal" value="<!--CPPCALL WebConfigMainADSignal -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group row" align="center">
+												    <label class="col-sm-4 col-form-label">Double Axles Detector:</label>
+												    <div class="col-sm-8">
+												      <div class="form-check">
+												        <input class="form-check-input" type="checkbox" id="DoubleAxDet" name="DoubleAxDet" <!--CPPCALL WebConfigDoubleAxDet --> disabled><br>
+												      </div>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label class="col-sm-4 col-form-label">Double Axles Signal Group:</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="DoubleADSignal" name="DoubleADSignal" value="<!--CPPCALL WebConfigDoubleADSignal -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group row" align="center">
+												    <label class="col-sm-4 col-form-label">Reverse Double Axles Direction:</label>
+												    <div class="col-sm-8">
+												      <div class="form-check">
+												        <input class="form-check-input" type="checkbox" id="DoubleAxDetRev" name="DoubleAxDetRev" <!--CPPCALL WebConfigReverseDoubleAD --> disabled><br>
+												      </div>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group row" align="center">
+												    <label class="col-sm-4 col-form-label">Mirror Axles Detector:</label>
+												    <div class="col-sm-8">
+												      <div class="form-check">
+												        <input class="form-check-input" type="checkbox" id="MirrorAxDet" name="MirrorAxDet" <!--CPPCALL WebConfigMirrorAxDet --> disabled><br>
+												      </div>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label class="col-sm-4 col-form-label">Mirror Axles Signal Group:</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="MirrorADSignal" name="MirrorADSignal" value="<!--CPPCALL WebConfigMirrorADSignal -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group row" align="center">
+												    <label class="col-sm-4 col-form-label">Reverse Mirror Axles Direction:</label>
+												    <div class="col-sm-8">
+												      <div class="form-check">
+												        <input class="form-check-input" type="checkbox" id="MirrorAxDetRev" name="MirrorAxDetRev" <!--CPPCALL WebConfigReverseMirrorAD --> disabled><br>
+												      </div>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Phone Number:</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="PhoneNumber" name="PhoneNumber" value="<!--CPPCALL WebConfigPhoneNumber -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Temperature alarm max(30-60 °c):</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="Door" name="Door" value="<!--CPPCALL WebConfigTempAlarmSet -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								    	</div><!--row-->
+									</div><!--box body-->
+								</div><!--col4-->
+								
+								<div class="col-md-4">
+									<div class="box-body">
+								    	<div class="row">
+								    		<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<h3> <strong>CONNECTIVITIES</strong> </h3><br>
+								                </div>
+								            </div>
+								        	<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Ipv4 Mode: (MAC30):</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="IpMode" name ="IpMode" value="<!--CPPCALL WebConfigNbIpMode -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">IPv4 adress(MAC30):</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="netburner_ip"  name="netburner_ip" value="<!--CPPCALL WebConfigNbIp -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Ip Mask(MAC30):</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="netburner_mask"  name="netburner_mask" value="<!--CPPCALL WebConfigNbMask -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Default Gateway:(MAC30):</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="netburner_gate"  name="netburner_gate" value="<!--CPPCALL WebConfigNbGate -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">DNS Server(MAC30):</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="netburner_dns"  name="netburner_dns" value="<!--CPPCALL WebConfigNbDns -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">LOG Output:</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="LogChoice" name="LogChoice" value="<!--CPPCALL WebConfigLogChoice -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">IP Address(LOG UDP):</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="udpIp" name="udpIp" value="<!--CPPCALL WebConfigUdpIp -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Port(LOG UDP):</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="udpPort" name="udpPort" value="<!--CPPCALL WebConfigUdpPort -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Server Url:</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="server_address"  name="server_address" value="<!--CPPCALL WebConfigServerUrl -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Sargas Quantity (RFID):</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="sargasQty" name="sargasQty" value="<!--CPPCALL WebConfigQtySargas -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Sargas (R) Ip Address(RFID):</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="sargasRIp" name="sargasRIp" value="<!--CPPCALL WebConfigSargasIp_R -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Antennas per SARGAS (R):</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="sargasAntennas"  name="sargasAntennas" value="<!--CPPCALL WebConfigQtySargasAntR -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Sargas (L) Ip Address(RFID):</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="sargasLIp" name="sargasLIp" value="<!--CPPCALL WebConfigSargasIp_L -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Antennas per SARGAS (L):</label>
+								                	<div class="col-sm-8">
+												     	<input type="text" class="form-control" style="width:300px;height:34px" id="sargasAntennas"  name="sargasAntennas" value="<!--CPPCALL WebConfigQtySargasAntL -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								    	</div><!--row-->
+									</div><!--box body-->
+								</div><!--col4-->
+								
+								<div class="col-md-4">
+									<div class="box-body">
+								    	<div class="row">
+								    		<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<h3> <strong>SIGNAL/DIGITAL INPUT</strong> </h3><br>
+								                </div>
+								            </div>
+								    		<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Sys1:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="Sys1" name="Sys1" min="1" max="18" value="<!--CPPCALL WebConfigSys1 -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Sys2:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="Sys2" name="Sys2" value="<!--CPPCALL WebConfigSys2 -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Sys1':</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="Sys1p" name="Sys1p" min="1" max="18" value="<!--CPPCALL WebConfigSys1p -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Sys2':</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="Sys2p" name="Sys2p" value="<!--CPPCALL WebConfigSys2p -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">LoopC_I:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="InC_I" name="InC_I" value="<!--CPPCALL WebConfigInC_I -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">LoopO:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="InO" name="InO" value="<!--CPPCALL WebConfigInO -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">DcOk1:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="DcOk1" name="DcOk1" value="<!--CPPCALL WebConfigDcOk1 -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">DcOk2:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="DcOk2" name="DcOk2" value="<!--CPPCALL WebConfigDcOk2 -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								        	<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">AcOk1:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="AcOk1" name="AcOk1" value="<!--CPPCALL WebConfigAcOk1 -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">AcOk2:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="AcOk2" name="AcOk2" value="<!--CPPCALL WebConfigAcOk2 -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Bat1:</label>
+								                	<div class="col-sm-8"> 
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="Bat1" name="Bat1" value="<!--CPPCALL WebConfigBat1 -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Bat2:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="Bat2" name="Bat2" value="<!--CPPCALL WebConfigBat2 -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Door:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="Door" name="Door" value="<!--CPPCALL WebConfigDoor -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente" class="col-sm-4 col-form-label">Free:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="Free" name="Free" value="<!--CPPCALL WebConfigFree -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="Sys1n" class="col-sm-4 col-form-label">/Sys1:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="Sys1n" name="Sys1n" min="1" max="18" value="<!--CPPCALL WebConfigSys1n -->" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								    		<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="Sys2n" class="col-sm-4 col-form-label">/Sys2:</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="Sys2n" name="Sys2n" value="<!--CPPCALL WebConfigSys2n -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="Sys1np" class="col-sm-4 col-form-label">/Sys1':</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="Sys1np" name="Sys1np" value="<!--CPPCALL WebConfigSys1np -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="Sys2np" class="col-sm-4 col-form-label">/Sys2':</label>
+								                	<div class="col-sm-8">
+												     	<input type="number" class="form-control" style="width:300px;height:34px" id="Sys2np" name="Sys2np" value="<!--CPPCALL WebConfigSys2np -->" min="1" max="18" disabled><br>
+												    </div>
+								                </div>
+								            </div>
+								    	</div><!--div row-->
+									</div><!-- /.box-body -->
+								</div><!--div col4-->
+		                	</div></div><!--div row-->
+		                </div><!--div2 panel-->
+		            </div><!--div1 panel-->
+	            </div><!-- /.box-body -->
+	        </div><!-- /.box-solid -->
+	    </section>
+	</div>
+</body>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/menuResponsive.js"> </script>
+
+<script>
+	
+	window.onload = function () {
+		var status = document.getElementById("AeiStatus").value;
+		if(status == "0"){
+			document.getElementById("SpanStatus").className = "label label-success";
+			document.getElementById("SpanStatus").textContent="Status";
+		}
+		
+		if(document.getElementById("AeiDir").value == "0"){
+			document.getElementById("AeiDir").value = "BACKWARD";
+		}else if(document.getElementById("AeiDir").value == "1"){
+			document.getElementById("AeiDir").value = "FORWARD";
+		}
+		
+		if(document.getElementById("LoopType").value == "0"){
+			document.getElementById("LoopType").value = "Single";
+		}else if(document.getElementById("LoopType").value == "1"){
+			document.getElementById("LoopType").value = "Double";
+		}
+		
+		if(document.getElementById("LogChoice").value == "0"){
+			document.getElementById("LogChoice").value = "NONE";
+		}else if(document.getElementById("LogChoice").value == "1"){
+			document.getElementById("LogChoice").value = "SERIAL";
+		}else if(document.getElementById("LogChoice").value == "2"){
+			document.getElementById("LogChoice").value = "UDP";
+		}else if(document.getElementById("LogChoice").value == "3"){
+			document.getElementById("LogChoice").value = "BOTH";
+		}
+		
+		if(document.getElementById("sargasQty").value == "1"){
+			document.getElementById("sargasQty").value = "SINGLE";
+		}else if(document.getElementById("sargasQty").value == "2"){
+			document.getElementById("sargasQty").value = "DOUBLE";
+		}
+		
+		/*if(document.getElementById("DoubleAxDet").checked){
+			document.getElementById('lbSys1_S').innerHTML = 'Sys1_S:';
+			document.getElementById('lbSys1p_S').innerHTML = 'Sys1p_S:';
+			document.getElementById('lbSys2_S').innerHTML = 'Sys2_S:';
+			document.getElementById('lbSys2p_S').innerHTML = 'Sys2p_S:';
+		}*/
+		
+		if(document.getElementById("MainADSignal").value == "0"){
+			document.getElementById("MainADSignal").value = "Sys";
+		}else if(document.getElementById("MainADSignal").value == "1"){
+			document.getElementById("MainADSignal").value = "Sys'";
+		}else if(document.getElementById("MainADSignal").value == "2"){
+			document.getElementById("MainADSignal").value = "/Sys";
+		}else if(document.getElementById("MainADSignal").value == "3"){
+			document.getElementById("MainADSignal").value = "/Sys'";
+		}
+		
+		if(document.getElementById("DoubleADSignal").value == "0"){
+			document.getElementById("DoubleADSignal").value = "Sys";
+		}else if(document.getElementById("DoubleADSignal").value == "1"){
+			document.getElementById("DoubleADSignal").value = "Sys'";
+		}else if(document.getElementById("DoubleADSignal").value == "2"){
+			document.getElementById("DoubleADSignal").value = "/Sys";
+		}else if(document.getElementById("DoubleADSignal").value == "3"){
+			document.getElementById("DoubleADSignal").value = "/Sys'";
+		}
+		//Mirror
+		if(document.getElementById("MirrorADSignal").value == "0"){
+			document.getElementById("MirrorADSignal").value = "Sys";
+		}else if(document.getElementById("MirrorADSignal").value == "1"){
+			document.getElementById("MirrorADSignal").value = "Sys'";
+		}else if(document.getElementById("MirrorADSignal").value == "2"){
+			document.getElementById("MirrorADSignal").value = "/Sys";
+		}else if(document.getElementById("MirrorADSignal").value == "3"){
+			document.getElementById("MirrorADSignal").value = "/Sys'";
+		}
+   	}
+
+</script>
+
+</html>

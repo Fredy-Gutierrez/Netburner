@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>
+  IntegraID
+  </title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
+  							   
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  
+</head>
+
+<body>
+	<header>
+		<div class="menu_bar">
+			<a href="#" class="bt-menu">Integra</a>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="index.html">Home </a></li>
+				<li><a href="reports.html">Status</a></li>
+				
+				<li class="submenu">
+					<a href="#">Configurations <span class="caret icon-arrow-down6"></a>
+					<ul class="children">
+						<li><a href="general_config.html">General</a></li>
+						<li><a href="server_config.html">Connectivities</a></li>
+						<li><a href="gpio.html">Inputs assignment</a></li>
+					</ul>
+				</li>
+				<li><a href="contacts.html">About us</a></li>
+				<li><a href="http://www.integraid.com" target="_blank">Integra Ingeniería y Diseño</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<div class="content-wrapper">
+	    
+	    <!-- Content Header (Page header) -->
+	    <section class="content-header">
+			<div class="col-md-12">
+				<div class="form-group" align="center">
+					<h3> GENERAL CONFIGURATION </h3>
+					</br>
+				</div>
+			</div>
+	    </section>
+	    
+	    <!-- Main content -->
+	    <section class="content">
+	        <!-- Default box -->
+	        <div class="box box-solid" >
+	            <div class="box-body">
+	                <form id="formGeneral" action="formGeneral" method="post" >
+	                	<div class="row">
+	                    	<div class="col-md-5">
+								<div class="box-body">
+							    	<div class="row">
+							    	
+							    	<div class="panel panel-default">
+										<div class="panel-heading" align="center">AEI Information</div>
+										<div class="panel-body">
+								        	<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="AeiID">Aei ID:</label><br>
+								                	<small id="LoopTimeOnHelpBlock" class="form-text text-muted">
+														  This Id must be unique within DB server, restricted size to 7 char<br>
+													</small>
+												   	<input type="text" style="width:300px;height:30px" class="form-control" id="AeiID" name="AeiID" maxlength="7" onkeydown='return validate(event, "AeiID")' value="<!--CPPCALL WebConfigAeiId -->" required><br>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								            		<input type="hidden" id="AeiDirValue" value="<!--CPPCALL WebConfigAeiDir -->">
+								                	<label for="AeiDir">Aei Direction:</label><br>
+								                	<select style="width:300px;height:30px" class="form-control" id="AeiDir" name="AeiDir">
+												        <option value="1" id="AeiDirOp1">FORWARD</option>
+												        <option value="0" id="AeiDirOp0">BACKWARD</option>
+												    </select>
+								                </div>
+								            </div>
+								        </div>
+									</div>
+									
+							        <div class="panel panel-default">
+										<div class="panel-heading" align="center">LOOP</div>
+										<div class="panel-body">
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								            		<label for="LoopOnOff">Loop RFID OnOff</label><br>
+								            		<small id="LoopOnOffHelpBlock" class="form-text text-muted">
+														  Disabled = RFID antennas will remain ON all time<br>
+													</small>
+								                	<div class="custom-control custom-checkbox">
+													  <input type="checkbox" class="custom-control-input" id="LoopOnOff" name="LoopOnOff" <!--CPPCALL WebConfigLoopOnOff -->><br>
+													</div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								            		<input type="hidden" id="LoopTypeValue" value="<!--CPPCALL WebConfigLoopType -->">
+								                	<label for="LoopType">Loop Type:</label><br>
+								                	<select style="width:300px;height:30px" class="form-control" id="LoopType" name="LoopType">
+												        <option value="0" id="LoopTypeOp0">SINGLE</option>
+												        <option value="1" id="LoopTypeOp1">DOUBLE</option>
+												    </select>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="LoopTimeOn">Loop Time On:</label><br>
+								                	<small id="LoopTimeOnHelpBlock" class="form-text text-muted">
+														  Time to indicate there is a car stopped over Aei (300-900 sec)<br>
+													</small>
+								                	<input type="number" style="width:300px;height:30px" class="form-control" id="LoopTimeOn" name="LoopTimeOn"  onkeydown='return validate(event, "LoopTimeOn")' min="300" max="900" value="<!--CPPCALL WebConfigLoopTimeOn -->" required><br>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="LoopTimeOff">Loop Time Off:</label><br>
+								                	<small id="LoopTimeOffHelpBlock" class="form-text text-muted">
+														  Time to turn OFF antennas<br>
+													</small>
+								                	<input type="number" style="width:300px;height:30px" class="form-control" id="LoopTimeOff" name="LoopTimeOff" onkeydown='return validate(event, "LoopTimeOff")' min="60" max="600" value="<!--CPPCALL WebConfigLoopTimeOff -->" required><br>
+								                </div>
+								            </div>
+						           		</div>
+									</div>
+							            
+							        <div class="panel panel-default">
+										<div class="panel-heading" align="center">NTP SYNC</div>
+										<div class="panel-body">
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								            		<label for="NtpSyncOnOff">Ntp Sync OnOff</label><br>
+								            		<small id="NtpSyncOnOffHelpBlock" class="form-text text-muted">
+														  Enabling of NTP synchronization<br>
+													</small>
+								                	<div class="custom-control custom-checkbox">
+													  <input type="checkbox" class="custom-control-input" id="NtpSyncOnOff" name="NtpSyncOnOff" <!--CPPCALL WebConfigNtpSyncOnOff -->><br>
+													</div>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="NtpServer">Ntp Server:</label><br>
+								                	<small id="NtpSyncOnOffHelpBlock" class="form-text text-muted">
+														  Clock synchronization NTP server name<br>
+													</small>
+								                	<input type="text" style="width:300px;height:30px" class="form-control" id="NtpServer" name="NtpServer" onkeydown='return validate(event, "NtpServer")' value="<!--CPPCALL WebConfigNtpServer -->" required><br>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="SyncTime">Ntp Sync Time(Hours):</label><br>
+												    <small id="SyncTimeHelpBlock" class="form-text text-muted">
+														  Period of time for NTP synchronization (1-24 hours)<br>
+													</small>
+												    <input type="number" style="width:300px;height:30px" class="form-control" id="SyncTime" name="SyncTime" value="<!--CPPCALL WebConfigNtpSyncTime -->" onkeydown='return validate(event, "SyncTime")' min="1" max="24" required><br>
+								                </div>
+								            </div>
+						           		</div>
+									</div><!--panel-->
+									
+							    	</div><!--row-->
+								</div>
+							</div>
+							
+							<div class="col-md-2">
+								<div class="box-body">
+							    	<div class="row">
+							    	</div>
+							    </div>
+							</div>
+							
+							<div class="col-md-5">
+								<div class="box-body">
+							    	<div class="row">
+							    	
+							    	<div class="panel panel-default">
+										<div class="panel-heading" align="center">Battery information </div>
+										<div class="panel-body">
+										
+											<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								            		<label for="BattTestOnOff">Battery Test OnOff:</label><br>
+								            		<small id="LoopOnOffHelpBlock" class="form-text text-muted">
+														  Enabling of periodic battery test<br>
+													</small>
+								                	<div class="custom-control custom-checkbox">
+													  <input type="checkbox" class="custom-control-input" id="BattTestOnOff" name="BattTestOnOff" <!--CPPCALL WebConfigBattTestOnOff -->><br>
+													</div>
+								                </div>
+								            </div>
+								            
+								        	<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="BateryInstallationDate">Battery Install Date:</label><br>
+								                	<small id="LoopOnOffHelpBlock" class="form-text text-muted">
+														  Record dd/mm/yyyy when installed new batteries<br>
+													</small>
+												    <input type="date" style="width:300px;height:30px" class="form-control" id="BateryInstallationDate" name="BateryInstallationDate" onkeydown='return validate(event, "BateryInstallationDate")' value="<!--CPPCALL WebConfigBattInstallDate -->" required><br>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="BateryCycle">Battery Test Period(Days):</label><br>
+								                	<small id="LoopOnOffHelpBlock" class="form-text text-muted">
+														  Period in days to make battery test(1-7 days)<br>
+													</small>
+								                	<input type="number" style="width:300px;height:30px" class="form-control" id="BateryCycle" name="BateryCycle" value="<!--CPPCALL WebConfigBattTestPeriod -->" onkeydown=' return validate(event, "BateryCycle")' min="1" max="7" required><br>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="BateryTestTime">Battery Test Hour:</label><br>
+								                	<small id="LoopOnOffHelpBlock" class="form-text text-muted">
+														  Hour of the day to make battery test<br>
+													</small>
+								                	<input type="number" style="width:300px;height:30px" class="form-control" id="BateryTestTime" name="BateryTestTime" value="<!--CPPCALL WebConfigBattTestHour -->" onkeydown=' return validate(event, "BateryTestTime")' min="1" max="24" required><br>
+								                </div>
+								            </div>
+							            </div>
+									</div><!--panel-->
+							            
+							        <div class="panel panel-default">
+										<div class="panel-heading" align="center">Axles detector</div>
+										<div class="panel-body">   
+											<div class="row">
+									            <div class="col-md-12">
+									            	<div class="form-group" align="center">
+									            		<input type="hidden" id="MainADSignalValue" value="<!--CPPCALL WebConfigMainADSignal -->">
+									                	<label for="MainADSignal">Main Axles Signal Group:</label><br>
+									                	<select style="width:300px;height:30px" class="form-control" id="MainADSignal" name="MainADSignal" onchange="getSelectedOp(this)">
+													        <option value="0" id="MainADSignalOp0">Sys</option>
+													        <option value="1" id="MainADSignalOp1">Sys'</option>
+													        
+													        <option value="2" id="MainADSignalOp2">/Sys</option>
+													        <option value="3" id="MainADSignalOp3">/Sys'</option>
+													        
+													    </select><br />
+									                </div>
+									            </div>
+								            </div>
+								            <hr />
+								            <div class="row">
+									            <div class="col-md-12">
+									            	<div class="form-group" align="center">
+									            		<div class="col-md-4">
+									            			<label for="DoubleAxDet">Double Axles Detector:</label><br>
+										                	<div class="custom-control custom-checkbox">
+															  <input type="checkbox" class="custom-control-input" id="DoubleAxDet" name="DoubleAxDet" onclick='verifyCheck("DoubleAxDet")' <!--CPPCALL WebConfigDoubleAxDet -->><br>
+															</div>
+									            		</div>
+									            		<div class="col-md-4">
+									            			<input type="hidden" id="DoubleADSignalValue" value="<!--CPPCALL WebConfigDoubleADSignal -->">
+									            			<label for="DoubleADSignal">Double Axles Signal Group:</label><br>
+										                	<select class="form-control" id="DoubleADSignal" name="DoubleADSignal">
+														        <option value="0" id="DoubleADSignalOp0">Sys</option>
+														        <option value="1" id="DoubleADSignalOp1">Sys'</option>
+														        
+														        <option value="2" id="DoubleADSignalOp2">/Sys</option>
+														        <option value="3" id="DoubleADSignalOp3">/Sys'</option>
+														        
+														    </select><br /><br />
+									            		</div>
+									            		<div class="col-md-4">
+									            			<label for="RDirDoubleAxDet">Reverse Direction:</label><br>
+										                	<div class="custom-control custom-checkbox">
+															  <input type="checkbox" class="custom-control-input" id="RDirDoubleAxDet" name="RDirDoubleAxDet" <!--CPPCALL WebConfigReverseDoubleAD -->><br>
+															</div>
+									            		</div>
+									                </div>
+									            </div>
+								            </div>
+								            <hr />
+								            <div class="row">
+									            <div class="col-md-12">
+									            	<div class="form-group" align="center">
+									            		<div class="col-md-4">
+									            			<label for="MirrorAxDet">Mirror axles Detector:</label><br>
+										                	<div class="custom-control custom-checkbox">
+															  <input type="checkbox" class="custom-control-input" id="MirrorAxDet" name="MirrorAxDet" onclick='verifyCheck("MirrorAxDet")' <!--CPPCALL WebConfigMirrorAxDet -->><br>
+															</div>
+									            		</div>
+									            		
+									            		<div class="col-md-4">
+									            			<input type="hidden" id="MirrorADSignalValue" name="MirrorADSignalValue" value="<!--CPPCALL WebConfigMirrorADSignal -->">
+									            			<label for="MirrorADSignal">Mirror Axles Signal Group:</label><br>
+										                	<select class="form-control" id="MirrorADSignal" name="MirrorADSignal">
+														        <option value="0" id="MirrorADSignalOp0">Sys</option>
+														        <option value="1" id="MirrorADSignalOp1">Sys'</option>
+														        <option value="2" id="MirrorADSignalOp2">/Sys</option>
+														        <option value="3" id="MirrorADSignalOp3">/Sys'</option>
+														    </select>
+									            		</div>
+									            		
+									            		<div class="col-md-4">
+									            			<label for="RDirMirrorAxDet">Reverse Direction:</label><br>
+										                	<div class="custom-control custom-checkbox">
+															  <input type="checkbox" class="custom-control-input" id="RDirMirrorAxDet" name="RDirMirrorAxDet" <!--CPPCALL WebConfigReverseMirrorAD -->><br>
+															</div>
+									            		</div>
+									                </div>
+									            </div>
+								            </div>
+								            
+							            </div>
+									</div><!--panel-->
+							        
+							        <div class="panel panel-default">
+										<div class="panel-heading" align="center">Additional Information</div>
+										<div class="panel-body">  
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="PhoneNumber">Phone Number:</label><br>
+								                	<input type="text" style="width:300px;height:30px" class="form-control" id="PhoneNumber" name="PhoneNumber" onkeydown='return validate(event, "PhoneNumber")' value="<!--CPPCALL WebConfigPhoneNumber -->" maxlength="13" required><br>
+								                </div>
+								            </div>
+								            
+								            <div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="TempAlarmSet">Temperature alarm max(30-60 °c):</label><br>
+								                	<input type="number" style="width:300px;height:30px" class="form-control" id="TempAlarmSet" name="TempAlarmSet" onkeydown='return validate(event, "TempAlarmSet")' value="<!--CPPCALL WebConfigTempAlarmSet -->" min="30" max="60"  required><br>
+								                </div>
+								            </div>
+							        	</div>
+									</div><!--panel-->
+									
+							    	</div><!--row-->
+								</div>
+							</div>
+		                </div>
+	            	<div class="row">
+	                	<div class="col-md-12">
+							<div class="form-group" align="center">
+			                	<br>
+			                	<br>
+			                    <input id="openButton" type = "button" class="btn btn-primary" onclick = 'sendAction(event, "open", "formGeneral", "open_close")' value = "Open Configurations">
+								<button id="saveButton" class="btn btn-success" type="submit">Save</button>
+								<br>
+								<input id="cancelButton" type = "button" class="btn btn-danger" onclick = "location.reload()" value = "Cancel">
+							</div>
+						</div>
+	                </div>
+	                </form>
+	            </div>
+	            <!-- /.box-body -->
+	        </div>
+	        <!-- /.box -->
+	    </section>
+	    <!-- /.content -->
+	</div>
+</body>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/menuResponsive.js"> </script>
+
+<script>
+	var openConfig;
+	var operation = false;
+	
+	window.onload = function () {
+		if(document.getElementById("LoopTypeValue").value == "0"){
+			document.getElementById("LoopTypeOp0").selected = "true";
+		}else if(document.getElementById("LoopTypeValue").value == "1"){
+			document.getElementById("LoopTypeOp1").selected = "true";
+		}
+		
+		if(document.getElementById("AeiDirValue").value == "0"){
+			document.getElementById("AeiDirOp0").selected = "true";
+		}else{
+			document.getElementById("AeiDirOp1").selected = "true";
+		}
+		
+		if(document.getElementById("MainADSignalValue").value == "0"){
+			document.getElementById("MainADSignalOp0").selected = "true";
+		} else if(document.getElementById("MainADSignalValue").value == "1"){
+			document.getElementById("MainADSignalOp1").selected = "true";
+		} else if(document.getElementById("MainADSignalValue").value == "2"){
+			document.getElementById("MainADSignalOp2").selected = "true";
+		} else if(document.getElementById("MainADSignalValue").value == "3"){
+			document.getElementById("MainADSignalOp3").selected = "true";
+		}
+		
+		checkMainSignal(document.getElementById("MainADSignalValue").value);
+		
+		if(document.getElementById("DoubleADSignalValue").value == "0"){
+			document.getElementById("DoubleADSignalOp0").selected = "true";
+		} else if(document.getElementById("DoubleADSignalValue").value == "1"){
+			document.getElementById("DoubleADSignalOp1").selected = "true";
+		} else if(document.getElementById("DoubleADSignalValue").value == "2"){
+			document.getElementById("DoubleADSignalOp2").selected = "true";
+		} else if(document.getElementById("DoubleADSignalValue").value == "3"){
+			document.getElementById("DoubleADSignalOp3").selected = "true";
+		}
+		
+		if(document.getElementById("MirrorADSignalValue").value == "0"){
+			document.getElementById("MirrorADSignalOp0").selected = "true";
+		} else if(document.getElementById("MirrorADSignalValue").value == "1"){
+			document.getElementById("MirrorADSignalOp1").selected = "true";
+		} else if(document.getElementById("MirrorADSignalValue").value == "2"){
+			document.getElementById("MirrorADSignalOp2").selected = "true";
+		} else if(document.getElementById("MirrorADSignalValue").value == "3"){
+			document.getElementById("MirrorADSignalOp3").selected = "true";
+		}
+		
+		disableAtt();
+   	}
+   	
+   	function verifyCheck( input ) {
+		var checkBox = document.getElementById( input );
+		if (checkBox.checked == true){
+			switch(input){
+				case "DoubleAxDet":
+					document.getElementById("DoubleADSignal").disabled = false;
+					document.getElementById("RDirDoubleAxDet").disabled = false;
+					//RDirDoubleAxDet
+					break;
+				case "MirrorAxDet":
+					document.getElementById("MirrorADSignal").disabled = false;
+					document.getElementById("RDirMirrorAxDet").disabled = false;
+					break;
+			}
+		} else {
+			switch(input){
+				case "DoubleAxDet":
+					document.getElementById("DoubleADSignal").disabled = true;
+					document.getElementById("RDirDoubleAxDet").disabled = true;
+					break;
+				case "MirrorAxDet":
+					document.getElementById("MirrorADSignal").disabled = true;
+					document.getElementById("RDirMirrorAxDet").disabled = true;
+					break;
+			}
+		}	
+	}
+   	
+   	function validate(e, input){
+		var x = e || window.event;
+		var key = (x.keyCode || x.which);
+		if(key == 13 || key == 3){
+			if( document.getElementById( input ).checkValidity() == false) {
+				document.getElementById(input).style.outline = "2px solid red";
+			}else{
+				document.getElementById(input).style.outline = "";
+			}
+		}
+	}
+	
+	function sendAction(evt, actionVal, formVal, url) {
+		if(!openConfig){
+		  	evt.preventDefault();
+	        var datos = {action:actionVal, form: formVal};  //Serializamos sus datos
+	        
+		  	$.ajax({
+	            url: url,    //Leerá la url en la etiqueta action del formulario (archivo.php)
+	            method: "POST", //Leerá el método en etiqueta method del formulario
+	            data: datos,                //Variable serializada más arriba
+	            success:function(datos){ //success es una funcion que se utiliza si el servidor retorna informacion
+			         console.log(datos)
+			    }
+	        });
+	        enableAtt();
+	    }
+	}
+	
+	function enableAtt(){
+		openConfig = true;
+		
+		document.getElementById("openButton").style.display = "none";
+		document.getElementById("saveButton").style.display = "block";
+		document.getElementById("cancelButton").style.display = "block";
+		
+		document.getElementById("AeiID").disabled = false;
+		document.getElementById("LoopType").disabled = false;
+		document.getElementById("LoopTimeOn").disabled = false;
+		document.getElementById("LoopTimeOff").disabled = false;
+		document.getElementById("LoopOnOff").disabled = false;
+		document.getElementById("AeiDir").disabled = false;
+		
+		document.getElementById("NtpSyncOnOff").disabled = false;
+		document.getElementById("NtpServer").disabled = false;
+		document.getElementById("SyncTime").disabled = false;
+		document.getElementById("PhoneNumber").disabled = false;
+		document.getElementById("BattTestOnOff").disabled = false;
+		document.getElementById("BateryInstallationDate").disabled = false;
+		document.getElementById("BateryCycle").disabled = false;
+		document.getElementById("BateryTestTime").disabled = false;
+		document.getElementById("TempAlarmSet").disabled = false;
+		
+		document.getElementById("MainADSignal").disabled = false;
+		document.getElementById("DoubleAxDet").disabled = false;
+		document.getElementById("MirrorAxDet").disabled = false;
+		
+		if (document.getElementById("DoubleAxDet").checked == true){
+			document.getElementById("DoubleADSignal").disabled = false;
+			document.getElementById("RDirDoubleAxDet").disabled = false;
+	  	}
+	  	
+	  	if (document.getElementById("MirrorAxDet").checked == true){
+			document.getElementById("MirrorADSignal").disabled = false;
+			document.getElementById("RDirMirrorAxDet").disabled = false;
+	  	}
+	}
+	
+	function disableAtt(){
+		openConfig = false;
+		
+		document.getElementById("openButton").style.display = "block";
+		document.getElementById("saveButton").style.display = "none";
+		document.getElementById("cancelButton").style.display = "none";
+		
+		document.getElementById("AeiID").disabled = true;
+		document.getElementById("LoopType").disabled = true;
+		document.getElementById("LoopTimeOn").disabled = true;
+		document.getElementById("LoopTimeOff").disabled = true;
+		document.getElementById("LoopOnOff").disabled = true;
+		document.getElementById("AeiDir").disabled = true;
+		document.getElementById("NtpSyncOnOff").disabled = true;
+		document.getElementById("NtpServer").disabled = true;
+		document.getElementById("SyncTime").disabled = true;
+		document.getElementById("PhoneNumber").disabled = true;
+		document.getElementById("BattTestOnOff").disabled = true;
+		document.getElementById("BateryInstallationDate").disabled = true;
+		document.getElementById("BateryCycle").disabled = true;
+		document.getElementById("BateryTestTime").disabled = true;
+		document.getElementById("TempAlarmSet").disabled = true;
+		
+		document.getElementById("MainADSignal").disabled = true;
+		document.getElementById("DoubleAxDet").disabled = true;
+		document.getElementById("DoubleADSignal").disabled = true;
+		document.getElementById("MirrorAxDet").disabled = true;
+		
+		document.getElementById("RDirDoubleAxDet").disabled = true;
+		document.getElementById("RDirMirrorAxDet").disabled = true;
+		document.getElementById("MirrorADSignal").disabled = true;
+	}
+	
+	function getSelectedOp(selectObject) {
+		  var value = selectObject.value;
+		  checkMainSignal( value );
+	}
+	
+	function removeOptions(selectElement) {
+	   var i, L = selectElement.options.length - 1;
+	   for(i = L; i >= 0; i--) {
+	      selectElement.remove(i);
+	   }
+	}
+	
+	function checkMainSignal(mainSignal){
+		removeOptions(document.getElementById('MirrorADSignal'));
+		
+		const select = document.getElementById('MirrorADSignal');
+		const opt1 = document.createElement('option');
+		const opt2 = document.createElement('option');
+		const opt3 = document.createElement('option');
+    
+		if(mainSignal == "0"){
+	  		opt1.value = "1";
+    		opt1.innerHTML = "Sys'";
+    		opt1.setAttribute('id','MirrorADSignalOp1');
+    		opt2.value = "2";
+    		opt2.innerHTML = "/Sys";
+    		opt2.setAttribute('id','MirrorADSignalOp2');
+    		opt3.value = "3";
+    		opt3.innerHTML = "/Sys'";
+    		opt3.setAttribute('id','MirrorADSignalOp3');
+	  	}else if(mainSignal == "1"){
+	  		opt1.value = "0";
+    		opt1.innerHTML = "Sys";
+    		opt1.setAttribute('id','MirrorADSignalOp0');
+    		opt2.value = "2";
+    		opt2.innerHTML = "/Sys";
+    		opt2.setAttribute('id','MirrorADSignalOp2');
+    		opt3.value = "3";
+    		opt3.innerHTML = "/Sys'";
+    		opt3.setAttribute('id','MirrorADSignalOp3');
+	  	}else if(mainSignal == "2"){
+	  		opt1.value = "0";
+    		opt1.innerHTML = "Sys";
+    		opt1.setAttribute('id','MirrorADSignalOp0');
+    		opt2.value = "1";
+    		opt2.innerHTML = "Sys'";
+    		opt2.setAttribute('id','MirrorADSignalOp1');
+    		opt3.value = "3";
+    		opt3.innerHTML = "/Sys'";
+    		opt3.setAttribute('id','MirrorADSignalOp3');
+	  	}else if(mainSignal == "3"){
+	  		opt1.value = "0";
+    		opt1.innerHTML = "Sys";
+    		opt1.setAttribute('id','MirrorADSignalOp0');
+    		opt2.value = "1";
+    		opt2.innerHTML = "Sys'";
+    		opt2.setAttribute('id','MirrorADSignalOp1');
+    		opt3.value = "2";
+    		opt3.innerHTML = "/Sys";
+    		opt3.setAttribute('id','MirrorADSignalOp2');
+	  	}
+	  	select.appendChild( opt1 );
+	  	select.appendChild( opt2 );
+	  	select.appendChild( opt3 );
+	}
+
+</script>
+
+</html>

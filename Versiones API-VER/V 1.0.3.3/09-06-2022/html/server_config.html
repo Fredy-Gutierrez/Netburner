@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>
+  IntegraID
+  </title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
+  							   
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+  
+</head>
+
+<body>
+	<header>
+		<div class="menu_bar">
+			<a href="#" class="bt-menu">Integra</a>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="index.html">Home </a></li>
+				<li><a href="reports.html">Status</a></li>
+				
+				<li class="submenu">
+					<a href="#">Configurations <span class="caret icon-arrow-down6"></a>
+					<ul class="children">
+						<li><a href="general_config.html">General</a></li>
+						<li><a href="server_config.html">Connectivities</a></li>
+						<li><a href="gpio.html">Inputs assignment</a></li>
+					</ul>
+				</li>
+				<li><a href="contacts.html">About us</a></li>
+				<li><a href="http://www.integraid.com" target="_blank">Integra Ingeniería y Diseño</a></li>
+			</ul>
+		</nav>
+	</header>
+	<div class="content-wrapper">
+	    
+	    <!-- Content Header (Page header) -->
+	    <section class="content-header">
+			<div class="col-md-12">
+				<div class="form-group" align="center">
+					<h3> CONNECTIVITIES </h3>
+					</br>
+				</div>
+			</div>
+	    </section>
+	    
+	    <!-- Main content -->
+	    <section class="content">
+	        <!-- Default box -->
+	        <div class="box box-solid" >
+	            <div class="box-body">
+	            	<div class="row">
+	            		<div class="col-md-5">
+							<form onsubmit="return confirm('The system will reboot!');" id="formNetburner" action="formNetburner"  method="post">
+								<div class="box-body">
+							    	<div class="row">
+							    	<div class="panel panel-default">
+										<div class="panel-heading" align="center"><h4> <strong>MAC30 ETH0</strong> </h4></div>
+										<div class="panel-body">
+											<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<input type="hidden" id="IpModeValue" value="<!--CPPCALL WebConfigNbIpMode -->">
+						                			<label for="AeiDir">Ipv4 Mode:</label><br>
+								                    <select style="width:300px;height:30px" class="form-control" id="IpMode" name="IpMode" onchange="getSelectedOp(this)">
+												        <option value="DHCP" id="ModeOp1">DHCP</option>
+												        <option value="Static" id="ModeOp2">Static</option>
+												    </select>
+								                </div>
+								            </div>
+								        	<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente">IPv4 adress:</label><br>
+								                    <input type="text" style=" width:300px;height:30px" class="form-control" id="netburner_ip"  name="netburner_ip" onkeydown='return validate(event, "netburner_ip")' value="<!--CPPCALL WebConfigNbIp -->" required>
+								                </div>
+								            </div>
+								        	<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente">Ip Mask:</label><br>
+								                    <input type="text" style=" width:300px;height:30px" class="form-control" id="netburner_mask"  name="netburner_mask" onkeydown='return validate(event, "netburner_mask")' value="<!--CPPCALL WebConfigNbMask -->" required>
+								                </div>
+								            </div>
+								        	<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente">Default Gateway:</label><br>
+								                    <input type="text" style=" width:300px;height:30px" class="form-control" id="netburner_gate"  name="netburner_gate" onkeydown='return validate(event, "netburner_gate")' value="<!--CPPCALL WebConfigNbGate -->" required>
+								                </div>
+								            </div>
+								        	<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente">DNS Server:</label><br>
+								                    <input type="text" style=" width:300px;height:30px" class="form-control" id="netburner_dns"  name="netburner_dns" onkeydown='return validate(event, "netburner_dns")' value="<!--CPPCALL WebConfigNbDns -->" required>
+								                </div>
+								            </div>
+								            <div class="col-md-12">
+								                <div class="form-group" align="center">
+								                	<br>
+								                    <input id="openButtonNb" type = "button" class="btn btn-primary" onclick = 'sendAction(event, "open", "formNetburner", "open_close")' value = "Open Configurations">
+													<button id="saveButtonNb" class="btn btn-success" type="submit">Save</button>
+								                	<br>
+													<input id="cancelButtonNb" type = "button" class="btn btn-danger" onclick = "location.reload()" value = "Cancel">
+													<br>
+								                	<br>
+								                </div>
+								           </div>
+								    	</div>
+								    </div>
+							    	</div>
+								</div>
+							</form>
+						</div>
+						
+						<div class="col-md-2">
+							<div class="box-body">
+						    	<div class="row">
+						    	</div>
+						    </div>
+						</div>
+						
+						<div class="col-md-5">
+							<form id ="formUdpConfig" action="formUdpConfig"  method="post"> 
+								<div class="box-body">
+							    	<div class="row">
+							    	<div class="panel panel-default">
+										<div class="panel-heading" align="center"><h4> <strong>LOG SERVICE</strong> </h4></div>
+										<div class="panel-body">
+								        	
+								        	<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<input type="hidden" id="LogChoiceValue" value="<!--CPPCALL WebConfigLogChoice -->">
+						                			<label for="LogChoice">LOG Output:</label><br>
+								                    <select style="width:300px;height:30px" class="form-control" id="LogChoice" name="LogChoice" onchange="getSelectedOpLog(this)">
+												        <option value="0" id="LogOp0">NONE</option>
+												        <option value="1" id="LogOp1">SERIAL</option>
+												        <option value="2" id="LogOp2">UDP</option>
+												        <option value="3" id="LogOp3">BOTH</option>
+												    </select>
+								                </div>
+								            </div>
+								        	
+								        	<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente">IP Address:</label><br>
+								                	<small id="LoopTimeOffHelpBlock" class="form-text text-muted">
+														  Ip address used to send a remote log<br>
+													</small>
+								                    <input type="text" style=" width:300px;height:30px" class="form-control" id="udpIp"  name="udpIp" value="<!--CPPCALL WebConfigUdpIp -->" onkeydown='return validate(event, "udpIp")' maxlength="15" required>
+								                </div>
+								            </div>
+								        	<div class="col-md-12">
+								            	<div class="form-group" align="center">
+								                	<label for="expediente">Port:</label><br>
+								                    <input type="number" style=" width:300px;height:30px" class="form-control" id="udpPort" min="1000" max="9999" name="udpPort" onkeydown='return validate(event, "udpPort")' value="<!--CPPCALL WebConfigUdpPort -->" required>
+								                </div>
+								            </div>
+								           <div class="col-md-12">
+								                <div class="form-group" align="center">
+								                    <input id="openButtonUdp" type = "button" class="btn btn-primary" onclick = 'sendAction(event, "open", "formUdpConfig", "open_close")' value = "Open Configurations">
+													<button id="saveButtonUdp" class="btn btn-success" type="submit">Save</button>
+								                	<br>
+													<input id="cancelButtonUdp" type = "button" class="btn btn-danger" onclick = "location.reload()" value = "Cancel">
+													<br>
+									                <br>
+								                </div>
+								           </div>
+						        		</div>
+						        	</div>
+							    	</div>
+								</div>
+							</form>
+						</div>
+					</div>
+	            	
+	                <div class="row">
+						<div class="col-md-5">
+							<form id="formSargas" action="formSargas"  method="post">
+								<div class="box-body">
+							    	<div class="row">
+									    <div class="panel panel-default">
+											<div class="panel-heading" align="center"><h4> <strong>TCP RFID READER(SARGAS)</strong> </h4></div>
+											<div class="panel-body">
+												<div class="col-md-12">
+									            	<div class="form-group" align="center">
+									            		<label for="SargasQty">RFID quantity (SARGAS):</label><br>
+														<input type="hidden" id="SargasQtyVal" value="<!--CPPCALL WebConfigQtySargas -->">
+														<select style="width:300px;height:30px" class="form-control" id="SargasQty" onchange="getSelectedSargas(this)" name="SargasQty">
+													        <option value="1" id="SargasTypeOp1">SINGLE</option>
+													        <option value="2" id="SargasTypeOp2">DOUBLE</option>
+													    </select>
+									                </div>
+									            </div>
+								            
+									        	<div class="col-md-12">
+									            	<div class="form-group" align="center">
+									                	<label for="expediente">Sargas (R) Ip Address:</label><br>
+									                    <input type="text" style=" width:300px;height:30px" class="form-control" id="ip_r" value="<!--CPPCALL WebConfigSargasIp_R -->" name="ip_r" maxlength="15" required>
+									                </div>
+									        	</div>
+									        	<div class="col-md-12">
+									            	<div class="form-group" align="center">
+									                	<label for="sargasAntQty">Quantity of antennas per Sargas (R):</label><br>
+									                	<input type="number" style="width:300px;height:30px" class="form-control" id="sargasAntQtyR" name="sargasAntQtyR" onkeydown='return validate(event, "sargasAntQtyR")' value="<!--CPPCALL WebConfigQtySargasAntR -->" min="1" max="4"  required><br>
+									                </div>
+									            </div>
+									        	<div class="col-md-12">
+									            	<div class="form-group" align="center">
+									                	<label for="expediente">Sargas (L) Ip Address:</label><br>
+									                    <input type="text" style=" width:300px;height:30px" class="form-control" id="ip_l" value="<!--CPPCALL WebConfigSargasIp_L -->" name="ip_l" maxlength="15">
+									                </div>
+									        	</div>
+									        	<div class="col-md-12">
+									            	<div class="form-group" align="center">
+									                	<label for="sargasAntQty">Quantity of antennas per Sargas (L):</label><br>
+									                	<input type="number" style="width:300px;height:30px" class="form-control" id="sargasAntQtyL" name="sargasAntQtyL" onkeydown='return validate(event, "sargasAntQtyL")' value="<!--CPPCALL WebConfigQtySargasAntL -->" min="1" max="4"  required><br>
+									                </div>
+									            </div>
+									           	<div class="col-md-12">
+									                <div class="form-group" align="center">
+									                    <input id="openButton" type = "button" class="btn btn-primary" onclick = 'sendAction(event, "open", "formSargas", "open_close")' value = "Open Configurations">
+														<button id="saveButton" class="btn btn-success" type="submit">Save</button>
+														<br>
+														<input id="cancelButton" type = "button" class="btn btn-danger" onclick = "location.reload()" value = "Cancel">
+														<br>
+										                <br>
+													</div>
+									           	</div>
+									      	</div>
+									   	</div>
+							    	</div>
+								</div>
+							</form>
+						</div>
+						
+						<div class="col-md-2">
+							<div class="box-body">
+						    	<div class="row">
+						    	</div>
+						    </div>
+						</div>
+							    
+						<div class="col-md-5">
+							<form id="formServerConfig" action="formServerConfig"  method="post">
+								<div class="box-body">
+							    	<div class="row">
+								    	<div class="panel panel-default">
+											<div class="panel-heading" align="center"><h4> <strong>DATA BASE SERVER</strong> </h4></div>
+											<div class="panel-body">
+									        	<div class="col-md-12">
+									            	<div class="form-group" align="center">
+									                	<label for="expediente">Server Url:</label><br>
+									                	<small id="LoopTimeOffHelpBlock" class="form-text text-muted">
+															URL used to report cars to DB server<br>
+														</small>
+									                    <input type="text" style=" width:300px;height:30px" class="form-control" id="server_address"  name="server_address" onkeydown='return validate(event, "server_address")' value="<!--CPPCALL WebConfigServerUrl -->" required>
+									                </div>
+									            </div>
+									           	<div class="col-md-12">
+									                <div class="form-group" align="center">
+									                    <input id="openButtonServer" type = "button" class="btn btn-primary" onclick = 'sendAction(event, "open", "formServerConfig", "open_close")' value = "Open Configurations">
+														<button id="saveButtonServer" class="btn btn-success" type="submit">Save</button>
+									                	<br>
+														<input id="cancelButtonServer" type = "button" class="btn btn-danger" onclick = "location.reload()" value = "Cancel">
+														<br>
+										                <br>
+									                </div>
+									           	</div>
+											</div>
+										</div>
+							    	</div>
+								</div>
+							</form>
+						</div>
+	            	</div>
+	            </div>
+	            <!-- /.box-body -->
+	        </div>
+	        <!-- /.box -->
+	    </section>
+	    <!-- /.content -->
+	</div>
+</body>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/menuResponsive.js"> </script>
+
+<script>
+	var openConfig;
+	var active;
+	
+	var bipadd;
+	var bipmask;
+	var bipgate;
+	var bipdns1;
+	var ipchange = false;
+	
+	var logchange = false;
+	var iplog;
+	var portlog;
+	
+	window.onload = function () {
+		
+		if(document.getElementById("IpModeValue").value == "DHCP"){
+			document.getElementById("ModeOp1").selected = "true";
+			disableIpAtt();
+		}else if(document.getElementById("IpModeValue").value == "Static"){
+			document.getElementById("ModeOp2").selected = "true";
+			enableIpAtt();
+		}
+		
+		if(document.getElementById("LogChoiceValue").value == "0"){
+			document.getElementById("LogOp0").selected = "true";
+			disableLogAtt();
+		}else if(document.getElementById("LogChoiceValue").value == "1"){
+			document.getElementById("LogOp1").selected = "true";
+			disableLogAtt();
+		}else if(document.getElementById("LogChoiceValue").value == "2"){
+			document.getElementById("LogOp2").selected = "true";
+			enableLogAtt();
+		}else if(document.getElementById("LogChoiceValue").value == "3"){
+			document.getElementById("LogOp3").selected = "true";
+			disableLogAtt();
+		}
+		
+		if(document.getElementById("SargasQtyVal").value == "1"){
+			document.getElementById("SargasTypeOp1").selected = "true";
+		}else if(document.getElementById("SargasQtyVal").value == "2"){
+			document.getElementById("SargasTypeOp2").selected = "true";
+		}
+		
+		disableAtt();
+   	}
+   	
+   	function getSelectedOp(selectObject) {
+	  var value = selectObject.value;
+	  if(value == "DHCP"){
+	  	disableIpAtt();
+	  }else{
+	  	ipchange = true;
+	  	enableIpAtt();
+	  }
+	}
+	
+	function getSelectedOpLog(selectObject) {
+	  var value = selectObject.value;
+	  if(value == "2"){
+	  	logchange = true;
+	  	enableLogAtt();
+	  }else{
+	  	disableLogAtt();
+	  }
+	}
+	
+	function getSelectedSargas(selectObject) {
+	  var value = selectObject.value;
+	  document.getElementById("SargasQtyVal").value = value;
+	  if(value != "1"){
+	  	enableSargasAtt();
+	  }else{
+	  	disableSargasAtt();
+	  }
+	}
+   	
+   	function validate(e, input){
+		var x = e || window.event;
+		var key = (x.keyCode || x.which);
+		if(key == 13 || key == 3){
+			if( document.getElementById( input ).checkValidity() == false) {
+				document.getElementById(input).style.outline = "2px solid red";
+			}else{
+				document.getElementById(input).style.outline = "";
+			}
+		}
+	}
+	
+	function sendAction(evt, actionVal, formVal, url) {
+		if(!openConfig){
+			active = formVal;
+		  	evt.preventDefault();
+	        var datos = {action:actionVal, form: formVal};  //Serializamos sus datos
+	        
+		  	$.ajax({
+	            url: url,    //Leerá la url en la etiqueta action del formulario (archivo.php)
+	            method: "POST", //Leerá el método en etiqueta method del formulario
+	            data: datos,                //Variable serializada más arriba
+	            success:function(datos){ //success es una funcion que se utiliza si el servidor retorna informacion
+			         console.log(datos)
+			    }
+	        });
+	        enableAtt();
+	    }
+	}
+		
+	function enableIpAtt(){
+		bipadd = document.getElementById("netburner_ip").value;
+		bipmask = document.getElementById("netburner_mask").value;
+		bipgate = document.getElementById("netburner_gate").value;
+		bipdns1 = document.getElementById("netburner_dns").value;
+		
+		document.getElementById("netburner_ip").disabled = false;
+		document.getElementById("netburner_mask").disabled = false;
+		document.getElementById("netburner_gate").disabled = false;
+		document.getElementById("netburner_dns").disabled = false;
+	}
+	
+	function disableIpAtt(){
+		if(ipchange){
+			document.getElementById("netburner_ip").value = bipadd;
+			document.getElementById("netburner_mask").value = bipmask;
+			document.getElementById("netburner_gate").value = bipgate;
+			document.getElementById("netburner_dns").value = bipdns1;
+			ipchange = false;
+		}
+		document.getElementById("netburner_ip").disabled = true;
+		document.getElementById("netburner_mask").disabled = true;
+		document.getElementById("netburner_gate").disabled = true;
+		document.getElementById("netburner_dns").disabled = true;
+	}
+	
+	function disableLogAtt(){
+		if(logchange){
+			document.getElementById("udpIp").value = iplog;
+			document.getElementById("udpPort").value = portlog;
+		}
+		document.getElementById("udpIp").disabled = true;
+		document.getElementById("udpPort").disabled = true;
+	}
+	
+	function disableSargasAtt(){
+		document.getElementById("ip_l").disabled = true;
+		document.getElementById("sargasAntQtyL").disabled = true;
+		
+		document.getElementById("ip_l").required = false;
+		document.getElementById("sargasAntQtyL").required = false;
+	}
+	
+	function enableLogAtt(){
+		iplog = document.getElementById("udpIp").value;
+		portlog = document.getElementById("udpPort").value;
+		
+		document.getElementById("udpIp").disabled = false;
+		document.getElementById("udpPort").disabled = false;
+	}
+	
+	function enableSargasAtt(){
+		document.getElementById("ip_l").required = true;
+		document.getElementById("sargasAntQtyL").required = true;
+		
+		document.getElementById("ip_l").disabled = false;
+		document.getElementById("sargasAntQtyL").disabled = false;
+	}
+		
+	function enableAtt(){
+		if(active == "formSargas"){
+			document.getElementById("SargasQty").disabled = false;
+			document.getElementById("ip_r").disabled = false;
+			document.getElementById("sargasAntQtyR").disabled = false;
+			if(document.getElementById("SargasQtyVal").value != "1"){
+				document.getElementById("ip_l").disabled = false;
+				document.getElementById("sargasAntQtyL").disabled = false;
+			}
+			
+			document.getElementById("openButton").style.display = "none";
+			document.getElementById("saveButton").style.display = "block";
+			document.getElementById("cancelButton").style.display = "block";
+		}else if(active == "formUdpConfig"){
+			document.getElementById("LogChoice").disabled = false;
+			if(document.getElementById("LogChoiceValue").value == "2"){
+				enableLogAtt();
+			}
+			document.getElementById("openButtonUdp").style.display = "none";
+			document.getElementById("saveButtonUdp").style.display = "block";
+			document.getElementById("cancelButtonUdp").style.display = "block";
+		}else if(active == "formServerConfig"){
+			document.getElementById("server_address").disabled = false;
+			document.getElementById("openButtonServer").style.display = "none";
+			document.getElementById("saveButtonServer").style.display = "block";
+			document.getElementById("cancelButtonServer").style.display = "block";
+		}else if(active == "formNetburner"){
+			document.getElementById("IpMode").disabled = false;
+			if(document.getElementById("IpModeValue").value == "Static"){
+				enableIpAtt();
+			}
+			document.getElementById("openButtonNb").style.display = "none";
+			document.getElementById("saveButtonNb").style.display = "block";
+			document.getElementById("cancelButtonNb").style.display = "block";
+		}
+		openConfig = true;
+	}
+	
+	function disableAtt(){
+		openConfig = false;
+		active = "";
+		
+		document.getElementById("IpMode").disabled = true;
+		document.getElementById("netburner_ip").disabled = true;
+		document.getElementById("netburner_mask").disabled = true;
+		document.getElementById("netburner_gate").disabled = true;
+		document.getElementById("netburner_dns").disabled = true;
+		
+		document.getElementById("SargasQty").disabled = true;
+		document.getElementById("ip_r").disabled = true;
+		document.getElementById("ip_l").disabled = true;
+		document.getElementById("sargasAntQtyR").disabled = true;
+		document.getElementById("sargasAntQtyL").disabled = true;
+		
+		document.getElementById("server_address").disabled = true;
+		
+		document.getElementById("LogChoice").disabled = true;
+		document.getElementById("udpIp").disabled = true;
+		document.getElementById("udpPort").disabled = true;
+		
+		document.getElementById("openButton").style.display = "block";
+		document.getElementById("saveButton").style.display = "none";
+		document.getElementById("cancelButton").style.display = "none";
+		
+		document.getElementById("openButtonServer").style.display = "block";
+		document.getElementById("saveButtonServer").style.display = "none";
+		document.getElementById("cancelButtonServer").style.display = "none";
+		
+		document.getElementById("openButtonUdp").style.display = "block";
+		document.getElementById("saveButtonUdp").style.display = "none";
+		document.getElementById("cancelButtonUdp").style.display = "none";
+		
+		document.getElementById("openButtonNb").style.display = "block";
+		document.getElementById("saveButtonNb").style.display = "none";
+		document.getElementById("cancelButtonNb").style.display = "none";
+	}
+
+</script>
+
+</html>

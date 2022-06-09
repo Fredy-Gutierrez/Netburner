@@ -1,0 +1,322 @@
+/*
+ * DBTrainDriver.cpp
+ *
+ *  Created on: 24 mar 2022
+ *      Author: Integra Fredy
+ */
+#include "libs/DBTrainDriver.h"
+#include "libs/Default_Values.h"
+#include "libs/SDCardDriver.h"
+#include "libs/Rtc_Controller.h"
+#include "libs/Train.h"
+#include "libs/Business.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+TrainControl controlTrain = { {'0','6','0','6','2','0','2','2','\0'} , 0, {'0','6','0','6','2','0','2','2','\0'} , 0, 0 };
+
+TrainControl controlDataTrain = { {'0','6','0','6','2','0','2','2','\0'} , 0, {'0','6','0','6','2','0','2','2','\0'} , 0, 0 };
+
+SDTrainUsers * userRW;//user request pointer
+
+RequestState UserDBRequest = StNoRequest;
+
+TrainControl * getControlTrain(RequestDataType controlType){
+	switch(controlType){
+		case TrainData:
+			return &controlTrain;
+		case TrainLogData:
+			return &controlDataTrain;
+		default:
+			return NULL;
+	}
+}
+
+/*******************CREATES THE BASE DIRECTORIES FOR TRAINS*********************/
+bool createDirectories(){
+	f_chdrive(EXT_FLASH_DRV_NUM);
+	if(MakeDir("/DB")){
+		if(MakeDir(BASETRAINDIR)){
+			if(MakeDir(BASETRAINDATADIR)){
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+/*******************OVERWRITE THE TRAIN CONTROL*********************/
+void overwriteTrainControl(const char * BasePath, TrainControl * ctlTrain){
+	MoveToDirectory(BasePath);//Move the file system to route "/DB/Trains"
+	FN_FILE * fp = OpenFile(CONTROLTRAINFILE, "w+");//Open file as write mode
+	if(fp){
+		SDWrite(ctlTrain, sizeof(TrainControl), fp);//write train control structure
+		CloseFile(fp);//close file
+	}
+	MoveToDirectory("/");//Move the file system to root
+}
+
+void printTrainControlInfo(){
+	logg.newPrint("\nTrains waiting to send: %d", (int)controlTrain.TrainToSend);
+	logg.newPrint("\nWrite day: %s train number: %d", controlTrain.DayDirWrite, (int)controlTrain.TrainNumWrite);
+	logg.newPrint("\nRead day: %s train number: %d", controlTrain.DayDirRead, (int)controlTrain.TrainNumRead);
+
+	logg.newPrint("\n\nTrains waiting be processed: %d", (int)controlDataTrain.TrainToSend);
+	logg.newPrint("\nWrite day: %s train number: %d", controlDataTrain.DayDirWrite, (int)controlDataTrain.TrainNumWrite);
+	logg.newPrint("\nRead day: %s train number: %d", controlDataTrain.DayDirRead, (int)controlDataTrain.TrainNumRead);
+}
+
+/*******************READ THE TRAIN CONTROL*********************/
+void readTrainControl(const char * BasePath, TrainControl * ctlTrain){
+	createDirectories();//Makes train directories
+	MoveToDirectory(BasePath);//Moves file system to train directory DB/Trains
+	FN_FILE * fp = OpenFile(CONTROLTRAINFILE, "r");//Open file as read mode
+	if(fp){
+		SDRead( ctlTrain, sizeof(TrainControl), fp );//read train control structure
+		CloseFile(fp);//close file
+	}else{
+		//if file not exist it will create the file
+		overwriteTrainControl(BasePath,  ctlTrain);
+	}
+	MoveToDirectory("/");//Move the file system to root
+}
+
+/********************************MOVES THE FILE SYSTEM TO PATH *********************************/
+bool useTrainDirectory(const char * BasePath, TrainControl *ctlTrain){
+	char trainFolder[9];//ddMMyyyy
+	char fullPath[20];//FULL PATH DB/TRAINS/ddMMyyyy
+
+	memset(fullPath,'\0',20);
+	memset(trainFolder,'\0',9);
+
+	if(userRW->useTrainControl){
+		if(userRW->request == ReadRequest || userRW->request == OverWriteRequest){
+			memcpy(trainFolder, ctlTrain->DayDirRead, sizeof(trainFolder));
+		}else{
+			/********************WHEN REQUEST IS WRITE AND THE USER IS USING THE CONTROLTRAIN, WE WILL GET THE DAY DIRECTORY*****************************/
+			getDateIntoBuffer(trainFolder, '\0');//GETS THE DATE AS ddMMyyyy TO USE OR CREATE THE DAY FOLDER
+			trainFolder[8] = '\0';
+			int datesCom = compareDates(ctlTrain->DayDirWrite, trainFolder);//COMPARE TWO (CHAR *) DATES TO KNOW WHICH IS HIGHEST
+			if( datesCom < 0 ) {//IF ACTUAL CONTROL DAYWRITE IS LOWER THAN SYSTEMDATE
+				memcpy(ctlTrain->DayDirWrite, trainFolder, sizeof(trainFolder));//CHANGE THE DAYWRITE TO SYSTEMDATE
+				ctlTrain->TrainNumWrite = 0;//RESTART THE TRAIN NUMBER FOR NEW DAY
+				overwriteTrainControl(BasePath, ctlTrain);//SAVE THE TRAIN CONTROL INTO .bin
+			}else if(datesCom > 0){//IF ACTUAL CONTROL DAYWRITE IS HIGHER THAN SYSTEMDATE
+				memcpy(trainFolder, ctlTrain->DayDirWrite, sizeof(trainFolder));
+			}
+		}
+		sprintf(fullPath, "%s/%s", BasePath, trainFolder);//MAKES THE FULL PATH
+	}else{
+		memcpy(fullPath, userRW->path, sizeof(userRW->path));//MAKES THE FULL PATH USING THE PATH THAT USER WANT
+	}
+
+	f_chdrive(EXT_FLASH_DRV_NUM);//TO CREATE OR USE OTHER PATHS FOLDERS IN SDCARD
+
+	MakeDir(fullPath);//CREATE THE PATH IF NOT EXIST
+
+	if(!MoveToDirectory(fullPath)){//MOVES THE FILESYSTEM TO EXISTING PATH
+		return false;
+	}
+	return true;
+}
+
+/******************************************MAKES A TRAIN FILE NAME USING A SECUENCES*************************
+ * 		TRAIN FILE FORMAT		-> 			Train000001.bin
+ *
+ * 		@nFileName				->			Buffer to store the train name Generated by function
+ * 		@sequence				->			Train file sequence
+ * */
+void makeTrainFileName(char * nFileName, int secuence){
+	char fileName[16+sizeof(char)];
+	memset(fileName, 0, 16 * (sizeof fileName[0]) );
+	char num_char[6+sizeof(char)];
+	sprintf(num_char, "%06d", secuence);
+	strcpy(fileName, "Train");
+	strcat(fileName, num_char);
+	strcat(fileName, ".bin");
+	memcpy(nFileName, fileName, sizeof(fileName));
+}
+
+/******************************************WRITE REQUEST, IT CREATES A NEW TRAINFILE TO STORE A COMPLETE TRAIN INTO DBTRAINS*****************************
+ * IF USER USE THE TRAINCONTROL, IT WILL WRITE THE TRAIN INTO THE TRAINCONTROLPATH. IF NOT, IT WILL WRITE THE TRAIN INTO PATH THAT USER WANT AND WILL MAKE THE TRAIN FILE WITH USER FILENAME
+ **/
+bool writeTrain(void * pd, char * fileName, int size){
+
+	FN_FILE * fp = OpenFile(fileName, "w+");//open file as write mode
+	if(fp){
+		int rv = SDWrite(pd, size, fp);//write train
+		CloseFile(fp);//close train file
+
+		if(rv > 0){
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/******************************************OVERWRITE REQUEST, IT OVERWRITE A TRAIN STORED INTO DBTRAINS*****************************
+ * 	IF USER USE THE TRAINCONTROL, IT WILL OVERWRITE THE TRAIN INTO THE TRAINCONTROLPATH. IF NOT, IT WILL OVERWRITE THE TRAIN INTO PATH THAT USER WANT AND WILL MAKE THE TRAIN FILE WITH USER FILENAME
+ *
+ *	THE DEFAULT USE IS FOR TRAINS THAT HAVE BEEN REPORTED TO SERVER, SO THE REPORTEDFLAG HAS BEEN UPDATED, IT WILL OVERWRITE THE
+ *	TRAIN INFORMATION IN DB TO SAID THAT THE TRAIN HAS BEEN REPORTED AND INCREMENT THE READ SECUENCE FOR READ REQUEST
+ **/
+bool overWriteTrain(void * pd, char * fileName, int size){
+
+	FN_FILE * fp = OpenFile(fileName, "w");//open file as write mode
+	if(fp){
+		int rv = SDWrite(pd, size, fp);//overwrite train
+		CloseFile(fp);//close train file
+		if(rv > 0){
+			return true;
+		}
+	}
+	return false;
+}
+
+/******************************************READ REQUEST, IT READ A TRAIN STORED INTO DBTRAINS*****************************
+ * 	IF USER USE THE TRAINCONTROL, IT WILL READ THE NEXT TRAIN IN THE TRAINCONTROLPATH. IF NOT, IT WILL READ THE TRAIN INTO PATH THAT USER WANT
+ *	IF USING TRAINCONTROL, AND THERE IS NOT TRAINS TO READ
+ **/
+bool readTrain(void * pd, char * fileName, int size){
+	FN_FILE * fp = OpenFile(fileName, "r");//open file as read mode
+
+	if(fp){
+		int rv = SDRead(pd, size, fp);//read train
+		CloseFile(fp);//close train file
+		if(rv > 0){
+			return true;
+		}
+	}
+	return false;
+}
+
+void reqTrainData(char * baseDir, TrainControl * control){
+	useTrainDirectory(baseDir, control);//use the path where the file will be read
+
+	char fileName[16 + sizeof(char)];
+	memcpy(fileName, userRW->fileName, sizeof(userRW->fileName));//assign the filename that user want to use
+
+	bool result = false;
+	switch(userRW->request){
+		case ReadRequest:
+			if(userRW->useTrainControl){
+				makeTrainFileName(fileName, control->TrainNumRead + 1);//assign the filename making it with control train write sequence
+			}
+			result = readTrain(userRW->dataBuffer, fileName, userRW->buffSize);
+			if(!result){
+				if(userRW->useTrainControl){//if user is using the train control
+					if(compareDates(control->DayDirRead, control->DayDirWrite) < 0){//if day read is lower than day write, the day read directory has been completely read, so we must move to next directory
+						control->TrainNumRead = 0;
+						addDaysTo(control->DayDirRead, control->DayDirRead, 1);//add one day to read date
+						overwriteTrainControl(baseDir, control);//overwrite train control because we change the read parameters
+					}
+				}
+			}
+			break;
+		case WriteRequest:
+			if(userRW->useTrainControl){
+				makeTrainFileName(fileName, control->TrainNumWrite + 1);//assign the filename making it with control train write sequence
+			}
+			result = writeTrain(userRW->dataBuffer, fileName, userRW->buffSize);
+			if(userRW->useTrainControl){//if user is using train control it will update the train write number
+				control->TrainNumWrite = control->TrainNumWrite + 1;
+				control->TrainToSend = control->TrainToSend + 1;
+
+				overwriteTrainControl(baseDir, control);
+			}
+			break;
+		case OverWriteRequest:
+			if(userRW->useTrainControl){
+				makeTrainFileName(fileName, control->TrainNumRead + 1);//assign the filename making it with control train write sequence
+			}
+			result = overWriteTrain(userRW->dataBuffer, fileName, userRW->buffSize);
+			if(userRW->useTrainControl){//if user is using train control it will update the train read number
+				control->TrainNumRead = control->TrainNumRead + 1;
+				if(control->TrainToSend > 0){
+					control->TrainToSend = control->TrainToSend - 1;
+				}
+				overwriteTrainControl(baseDir, control);
+			}
+			break;
+	}
+	if(userRW->modReqStFlag){
+		if(result){
+			userRW->stateRequest = StCompletedReq;
+		}else{
+			userRW->stateRequest = StNoRequest;
+		}
+	}
+	MoveToDirectory("/");//return the file system to root path
+}
+
+/******************************************FOR NEW USER REQUEST*****************************
+	@user			->			User pointer where is the request data
+ **/
+bool newRequest(SDTrainUsers * user){
+	if(UserDBRequest != StNoRequest){
+		return false;
+	}
+	userRW = user;
+	if(userRW->modReqStFlag){
+		userRW->stateRequest = StInProgressReq;
+	}
+	UserDBRequest = StInProgressReq;
+	return true;
+}
+
+/******************************************MAIN TASK FOR DBTRAIN PROCESS*******************************/
+void DBTrainProcess(void * pd){
+	DBState DBProcessState = StDbInit;//controls DB task
+	AddFSTask();//ADDTASK TO USE THE SDCARD
+	while(1){
+		switch(DBProcessState){
+			case StDbInit:
+				InitExtFlash();//MOUNTS THE SDCARD
+				DBProcessState = StDbStart;
+				break;
+			case StDbStart:
+				readTrainControl(BASETRAINDIR, &controlTrain);//READ THE TRAIN CONTROL FOR TRAINS PROCCESED
+				readTrainControl(BASETRAINDATADIR, &controlDataTrain);//READ THE TRAIN CONTROL FOR TRAINS DATA
+				DBProcessState = StDbWait;
+				break;
+			case StDbWait:
+				if(UserDBRequest != StNoRequest){
+					switch(userRW->dataType){
+						case TrainData:
+							DBProcessState = StDbTrain;
+							break;
+						case TrainLogData:
+							DBProcessState = StDbTrainLog;
+							break;
+					}
+				}
+				OSTimeDly(10);//wait 500ms
+				break;
+			case StDbTrain:
+				reqTrainData(BASETRAINDIR, &controlTrain);
+				UserDBRequest = StNoRequest;
+				DBProcessState = StDbWait;
+				break;
+			case StDbTrainLog:
+				reqTrainData(BASETRAINDATADIR, &controlDataTrain);
+				UserDBRequest = StNoRequest;
+				DBProcessState = StDbWait;
+				break;
+			default:
+				UserDBRequest = StNoRequest;
+				DBProcessState = StDbWait;
+				break;
+		}
+	}
+}
+
+/******************************************INIT TASK FOR DBTRAIN PROCESS*******************************/
+void InitDBTrain(){
+	OSSimpleTaskCreatewName(DBTrainProcess, DBTRAIN_PRIO, "TaskDBTrain");
+}
+
+/******************************************RETURN THE QUANTITY OF TRAINS THAT MUS BE SEND*******************************/
+uint32_t getQtyTrainsToSend(){
+	return controlTrain.TrainToSend;
+}

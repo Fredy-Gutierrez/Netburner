@@ -1,9 +1,0 @@
-MSYS-1.0.11 Build:2007-01-12 12:05
-Exception: STATUS_ACCESS_VIOLATION at eip=732F6873
-eax=00000000 ebx=622F7972 ecx=FFFFFFFF edx=7109BB5C esi=706D5F6E edi=616C635F
-ebp=732F7365 esp=00657B08 program=C:\nburn\gcc\msys\1.0\bin\sh.exe
-cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
-Stack trace:
-Frame     Function  Args
-  10034 [main] sh 6964 handle_exceptions: Exception: STATUS_ACCESS_VIOLATION
-  10985 [main] sh 6964 handle_exceptions: Error while dumping state (probably corrupted stack)
