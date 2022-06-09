@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>
+  IntegraID
+  </title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
+  							   
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  
+</head>
+
+<body>
+	<header>
+		<div class="menu_bar">
+			<a href="#" class="bt-menu">Integra</a>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="index.html">Inicio</a></li>
+				<li><a href="general_config.html">Configuraciones</a></li>
+				<li><a href="test.html">Pruebas</a></li>
+				<li><a href="contacts.html">Contacto</a></li>
+				<li><a href="http://www.integraid.com" target="_blank">Integra Ingeniería y Diseño</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<div class="content-wrapper">
+	    
+	    <!-- Content Header (Page header) -->
+	    <section class="content-header">
+			<div class="col-md-12">
+				<div class="form-group" align="center">
+					<h3> CONFIGURACIONES </h3>
+				</div>
+			</div>
+	    </section>
+	    
+	    <!-- Main content -->
+	    <section class="content">
+	        <!-- Default box -->
+	        <div class="box box-solid" >
+	            <div class="box-body">
+	                <form id="formGeneral" action="formGeneral" method="post" >
+	                	<div class="row">
+	                    	<div class="col-md-5">
+								<div class="box-body">
+							    	<div class="row">
+										<div class="panel panel-default">
+											<div class="panel-heading" align="center">Información del equipo a probar</div>
+											<div class="panel-body">
+												<div class="row">
+													<div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="operator">Nombre del operador:</label><br />
+														   	<input type="text" class="form-control" id="doperator" name="doperator" value="<!--CPPCALL WebDOperator -->" required>
+										                </div>
+										            </div>
+										        	<div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="dsubstation">Subestacion:</label><br />
+														   	<input type="text" class="form-control" id="dsubstation" name="dsubstation" value="<!--CPPCALL WebDSubStation -->" required>
+										                </div>
+										            </div>
+									            </div><!--row-->
+									            <div class="row">
+									            	<div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="ddevice">Equipo:</label><br />
+														   	<input type="text" class="form-control" id="ddevice" name="ddevice" value="<!--CPPCALL WebDDevice -->" required>
+										                </div>
+										            </div>
+										            <div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="dserialnum">Numero de serie:</label><br />
+														   	<input type="text" class="form-control" id="dserialnum" name="dserialnum" value="<!--CPPCALL WebDSerialNum -->" required>
+										                </div>
+										            </div>
+									            </div><!--row-->
+									            <div class="row">
+										            <div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="dmake">Marca:</label><br />
+														   	<input type="text" class="form-control" id="dmake" name="dmake" value="<!--CPPCALL WebDMaker -->" required>
+										                </div>
+										            </div>
+										            <div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="dcapacity">Capacidad:</label><br />
+														   	<input type="text" class="form-control" id="dcapacity" name="dcapacity" value="<!--CPPCALL WebDCapacity -->" required>
+										                </div>
+										            </div>
+									            </div><!--row-->
+									            <div class="row">
+										            <div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="dtype">Tipo:</label><br />
+														   	<input type="text" class="form-control" id="dtype" name="dtype" value="<!--CPPCALL WebDType -->" required>
+										                </div>
+										            </div>
+										            <div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="dtension">Tension:</label><br />
+														   	<input type="text" class="form-control" id="dtension" name="dtension" value="<!--CPPCALL WebDTension -->" required>
+										                </div>
+										            </div>
+									            </div><!--row-->
+									            <div class="row">
+										            <div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="dreportnum">Numero de reporte:</label><br />
+														   	<input type="number" class="form-control" id="dreportnum" name="dreportnum" value="<!--CPPCALL WebDReportNum -->" required>
+										                </div>
+										            </div>
+										            <div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="ddivision">Division:</label><br />
+														   	<input type="text" class="form-control" id="ddivision" name="ddivision" value="<!--CPPCALL WebDDivision -->" required>
+										                </div>
+										            </div>
+									            </div><!--row-->
+									            <div class="row">
+										            <div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="dzone">Zona:</label><br />
+														   	<input type="text" class="form-control" id="dzone" name="dzone" value="<!--CPPCALL WebDZone -->" required>
+										                </div>
+										            </div>
+										            <div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="ddatelast">Fecha de ultima prueba:</label><br />
+														   	<input type="date" class="form-control" id="ddatelast" name="ddatelast" value="<!--CPPCALL WebDDateLastTest -->" required>
+										                </div>
+										            </div>
+										        </div><!--row-->
+										        <div class="row">
+										            <div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="ddate">Fecha:</label><br />
+														   	<input type="date" class="form-control" id="ddate" name="ddate" value="<!--CPPCALL WebDDate -->" readonly>
+										                </div>
+										            </div>
+									            </div><!--row-->
+									        </div><!--panel body-->
+										</div><!--panel-->
+							    	</div><!--row-->
+								</div><!--box body-->
+							</div><!--colmd5-->
+							
+							<div class="col-md-2">
+								<div class="box-body">
+							    	<div class="row">
+							    		<!--******************************************************DIVIDER*******************************************************-->
+							    	</div>
+							    </div>
+							</div>
+							<div class="col-md-5">
+								<div class="box-body">
+							    	<div class="row">
+							    	<div class="panel panel-default">
+											<div class="panel-heading" align="center">Configuración de las pruebas</div>
+											<div class="panel-body">
+												<div class="row">
+													<div class="col-md-6">
+										            	<div class="form-group" align="center">
+										            		<input type="hidden" id="tinitialStateVal" name="tinitialStateVal" value="<!--CPPCALL WebTInitialState -->">
+										                	<label for="tinitialState">Estado inicial de las fases del ciclo de pruebas:</label><br />
+														   	<select class="form-control" id="tinitialState" name="tinitialState">
+														   		<option value="0" id="iStateOp0">Cerrado</option>
+														        <option value="1" id="iStateOp1">Abierto</option>
+														   	</select>
+										                </div>
+										            </div>
+										        	<div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="tcycleNumber">Ciclos de una prueba:</label><br />
+										                	<small id="tcycleNumbeHelpBlock" class="form-text text-muted">
+																Dependiendo de como inicie un ciclo de prueba, este puede ser cierre/apertura o apertura/cierre<br>
+															</small>
+														   	<input type="number" class="form-control" id="tcycleNumber" name="tcycleNumber" value="<!--CPPCALL WebTCycleNumber -->" required>
+										                </div>
+										            </div>
+									            </div><!--row-->
+									            <div class="row">
+									            	<div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="tcycleWaitTime">Tiempo de espera despues de un ciclo (segundos):</label><br />
+														   	<input type="number" class="form-control" id="tcycleWaitTime" name="tcycleWaitTime" min="1" max="180" value="<!--CPPCALL WebTCycleWaitTime -->" required>
+										                </div>
+										            </div>
+										            <div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="tcmdWaitTime">Tiempo de espera despues de un comando (segundos):</label><br />
+														   	<input type="number" class="form-control" id="tcmdWaitTime" name="tcmdWaitTime" min="1" max="90" value="<!--CPPCALL WebTCmdWaitTime -->" required>
+										                </div>
+										            </div>
+									            </div><!--row-->
+									            <div class="row">
+									            	<div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="tClosePulseTime">Duración del pulso Cerrar(milisegundos):</label><br />
+														   	<input type="number" class="form-control" id="tClosePulseTime" name="tClosePulseTime" min="1" max="1000" value="<!--CPPCALL WebTClosePulseTime -->" required>
+										                </div>
+										            </div>
+										            <div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="tOpenPulseTime">Duración del pulso Abrir(milisegundos):</label><br />
+														   	<input type="number" class="form-control" id="tOpenPulseTime" name="tOpenPulseTime" min="1" max="1000" value="<!--CPPCALL WebTOpenPulseTime -->" required>
+										                </div>
+										            </div>
+									            </div><!--row-->
+									            <div class="row">
+									            	<div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="tphasesWaitTime">Tiempo maximo de espera de fases (milisegundos):</label><br />
+														   	<input type="number" class="form-control" id="tphasesWaitTime" name="tphasesWaitTime" min="1" max="1000" value="<!--CPPCALL WebTPhasesWaitTime -->" required>
+										                </div>
+										            </div>
+									            	<div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="tmaxCloseDiference">Diferencia maxima entre fases proceso de cerrado (milisegundos):</label><br />
+														   	<input type="number" class="form-control" id="tmaxCloseDiference" name="tmaxCloseDiference" min="1" max="1000" value="<!--CPPCALL WebTMaxDiffClose -->" required>
+										                </div>
+										            </div>
+									            </div><!--row-->
+									            <div class="row">
+									            	<div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="tmaxOpenDiference">Diferencia maxima entre fases proceso de abrir (milisegundos):</label><br />
+														   	<input type="number" class="form-control" id="tmaxOpenDiference" name="tmaxOpenDiference" min="1" max="1000" value="<!--CPPCALL WebTMaxDiffOpen -->" required>
+										                </div>
+										            </div>
+										            <div class="col-md-6">
+										            	<div class="form-group" align="center">
+										                	<label for="tmaxTimeAfterPulse">Tiempo de espera máximo de retroalimientación del comando (milisegundos):</label><br />
+										                	<small class="form-text text-muted">
+																Es el tiempo máximo de espera de las entradas de los comandos cerrar/abrir, en caso de que estas no se reciban la prueba se abortará (recomendado que sea mayor que los tiempos de espera de fases)<br>
+															</small>
+														   	<input type="number" class="form-control" id="tmaxTimeAfterPulse" name="tmaxTimeAfterPulse" min="1" max="1000" value="<!--CPPCALL WebTMaxTimeAfterPulse -->" required>
+										                </div>
+										            </div>
+									            </div><!--row-->
+									        </div><!--panel body-->
+										</div><!--panel-->
+							    	</div>
+							    </div>
+							</div>
+						</div><!--row-->
+		            	<div class="row">
+		            		<div class="col-md-12">
+								<div class="form-group" align="center">
+				                	<button id="openButton" type ="button" onclick = 'enableAtt()' class="btn btn-primary">Abrir Configuraciones</button>
+			            			<button id="saveButton" class="btn btn-success" type="submit">Guardar</button><br />
+			            			<button id="cancelButton" type = "button" class="btn btn-danger" onclick = "location.reload()">Cancelar</button>
+								</div>
+							</div>
+		                </div>
+	                </form>
+	            </div>
+	            <!-- /.box-body -->
+	        </div>
+	        <!-- /.box -->
+	    </section>
+	    <!-- /.content -->
+	</div>
+</body>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/menuResponsive.js"> </script>
+
+<script>
+	var openConfig;
+	var operation = false;
+	
+	window.onload = function () {
+		if(document.getElementById("tinitialStateVal").value == "0"){
+			document.getElementById("iStateOp0").selected = "true";
+		}else if(document.getElementById("tinitialStateVal").value == "1"){
+			document.getElementById("iStateOp1").selected = "true";
+		}
+   	}
+   	
+   	function validate(e, input){
+		var x = e || window.event;
+		var key = (x.keyCode || x.which);
+		if(key == 13 || key == 3){
+			if( document.getElementById( input ).checkValidity() == false) {
+				document.getElementById(input).style.outline = "2px solid red";
+			}else{
+				document.getElementById(input).style.outline = "";
+			}
+		}
+	}
+	
+	/*
+	function sendAction(evt, actionVal, formVal, url) {
+		if(!openConfig){
+		  	evt.preventDefault();
+	        var datos = {action:actionVal, form: formVal};  //Serializamos sus datos
+	        
+		  	$.ajax({
+	            url: url,    //Leerá la url en la etiqueta action del formulario (archivo.php)
+	            method: "POST", //Leerá el método en etiqueta method del formulario
+	            data: datos,                //Variable serializada más arriba
+	            success:function(datos){ //success es una funcion que se utiliza si el servidor retorna informacion
+			         console.log(datos)
+			    }
+	        });
+	        enableAtt();
+	    }
+	}*/
+	
+	function enableAtt(){
+		document.getElementById("openButton").style.display = "none";
+		document.getElementById("saveButton").style.display = "block";
+		document.getElementById("cancelButton").style.display = "block";
+		
+		document.getElementById("doperator").disabled = false;
+		document.getElementById("dsubstation").disabled = false;
+		document.getElementById("ddevice").disabled = false;
+		document.getElementById("dserialnum").disabled = false;
+		document.getElementById("dmake").disabled = false;
+		document.getElementById("dcapacity").disabled = false;
+		document.getElementById("dtype").disabled = false;
+		document.getElementById("dtension").disabled = false;
+		document.getElementById("dreportnum").disabled = false;
+		document.getElementById("ddivision").disabled = false;
+		document.getElementById("dzone").disabled = false;	
+		document.getElementById("ddatelast").disabled = false;
+		
+		document.getElementById("tOpenPulseTime").disabled = false;
+	
+		document.getElementById("tinitialState").disabled = false;
+		document.getElementById("tcycleNumber").disabled = false;
+		document.getElementById("tcycleWaitTime").disabled = false;
+		document.getElementById("tcmdWaitTime").disabled = false;
+		document.getElementById("tClosePulseTime").disabled = false;
+		document.getElementById("tphasesWaitTime").disabled = false;
+		document.getElementById("tmaxCloseDiference").disabled = false;
+		document.getElementById("tmaxOpenDiference").disabled = false;
+		document.getElementById("tmaxTimeAfterPulse").disabled = false;
+		
+	}
+	
+	function disableAtt(){
+		document.getElementById("openButton").style.display = "block";
+		document.getElementById("saveButton").style.display = "none";
+		document.getElementById("cancelButton").style.display = "none";
+		document.getElementById("doperator").disabled = true;
+		document.getElementById("dsubstation").disabled = true;
+		document.getElementById("ddevice").disabled = true;
+		document.getElementById("dserialnum").disabled = true;
+		document.getElementById("dmake").disabled = true;
+		document.getElementById("dcapacity").disabled = true;
+		document.getElementById("dtype").disabled = true;
+		document.getElementById("dtension").disabled = true;
+		document.getElementById("dreportnum").disabled = true;
+		document.getElementById("ddivision").disabled = true;
+		document.getElementById("dzone").disabled = true;
+		
+		document.getElementById("tOpenPulseTime").disabled = true;
+		
+		document.getElementById("ddatelast").disabled = true;
+		document.getElementById("tinitialState").disabled = true;
+		document.getElementById("tcycleNumber").disabled = true;
+		document.getElementById("tcycleWaitTime").disabled = true;
+		document.getElementById("tcmdWaitTime").disabled = true;
+		document.getElementById("tClosePulseTime").disabled = true;
+		document.getElementById("tphasesWaitTime").disabled = true;
+		document.getElementById("tmaxCloseDiference").disabled = true;
+		document.getElementById("tmaxOpenDiference").disabled = true;
+		document.getElementById("tmaxTimeAfterPulse").disabled = true;
+	}
+	disableAtt();
+</script>
+
+</html>

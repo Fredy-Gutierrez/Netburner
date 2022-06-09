@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>
+  IntegraID
+  </title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
+  							   
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  
+</head>
+
+<body>
+	<header>
+		<div class="menu_bar">
+			<a href="#" class="bt-menu">Integra</a>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="index.html">Inicio</a></li>
+				<li><a href="general_config.html">Configuraciones</a></li>
+				<li><a href="test.html">Pruebas</a></li>
+				<li><a href="contacts.html">Contacto</a></li>
+				<li><a href="http://www.integraid.com" target="_blank">Integra Ingeniería y Diseño</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<div class="content-wrapper">
+	    <!-- Content Header (Page header) -->
+	    <section class="content-header">
+			<div class="col-md-12">
+				<div class="form-group" align="center">
+					<h3> PRUEBAS </h3>
+					<br />
+				</div>
+			</div>
+	    </section>
+	    
+	    <!-- Main content -->
+	    <section class="content">
+	        <!-- Default box -->
+	        <div class="box box-solid">
+	            <div class="box-body">
+		            <div class="row">
+		            	<div class="col-md-2">
+		            	</div>
+		            	<div class="col-md-8">
+			            	<div class="panel panel-default">
+								<div class="panel-heading" align="center"><h3>Informacion del equipo</h3></div>
+								<div class="panel-body">
+						        	<div class="col-md-4">
+						            	<div class="form-group" align="center">
+						                	<label class="form-label">Fases en estado: <span style="font-size:18px" id="SpanStatus"><!--CPPCALL WebFasesStatus --></span></label><br />
+						                	 <div id="digitalsDiv">
+						                	 	<!--CPPCALL WebDigitals -->
+						                	 </div>
+						                </div>
+						            </div>
+						            <div class="col-md-4">
+						            	<div class="form-group" align="center">
+						            		<input type="hidden" id="modeValue" value="<!--CPPCALL WebMicrometerMode -->">
+						                	<label class="form-label">Modo de operacion: <span style="font-size:18px" id="SpanMode"><!--CPPCALL WebMicrometerMode --></span></label><br />
+						                	<button id="changeButton" type ="button" onclick = 'sendAction(event, "changeMode")' class="btn btn-success">Cambiar Modo</button>
+						                </div>
+						            </div>
+						            <div class="col-md-4">
+						            	<div class="form-group" align="center">
+						                	<label class="form-label">Estado inicial de fases del ciclo de pruebas: <span style="font-size:16px" id="SpanInitialState"><!--CPPCALL WebTInitialState --></span></label><br />
+						                	<label class="form-label">Ciclos de prueba: <span style="font-size:16px"><!--CPPCALL WebTCycleNumber --></span></label><br />
+						                	<label class="form-label">Tiempo de espera despues de un ciclo: <span style="font-size:16px"><!--CPPCALL WebTCycleWaitTime -->s</span></label><br />
+						                </div>
+						            </div>
+						        </div>
+							</div>
+						</div>
+						<div class="col-md-2">
+		            	</div>
+				    </div>
+				    
+				    <div class="row">
+		            	<div class="col-md-6">
+			            	<div class="panel panel-default">
+								<div class="panel-heading" align="center"><h3>Modo Horometro</h3></div>
+								<div class="panel-body">
+						        	<div class="col-md-12">
+						            	<div class="form-group" align="center">
+						                	<button id="openButton" type ="button" onclick = 'sendAction(event, "open")' class="btn btn-info btn-lg custom">Abrir tanque</button>
+						            		<div class="buttons-divider"></div>
+						                	<button id="closeButton" type ="button" onclick = 'sendAction(event, "close")' class="btn btn-warning btn-lg custom">Cerrar tanque</button>
+						                	<div class="buttons-divider"></div>
+						                	<button id="testButton" type ="button" onclick = 'sendAction(event, "test")' class="btn btn-success btn-lg custom">Iniciar prueba</button>
+						                </div>
+						            </div>
+						        </div>
+							</div>
+						</div>
+						<div class="col-md-6">
+			            	<div class="panel panel-default">
+								<div class="panel-heading" align="center"><h3>Modo Externo</h3></div>
+								<div class="panel-body">
+						        	<div class="col-md-12">
+						            	<div class="form-group" align="center">
+						                	<button id="manualButton" type ="button" onclick = 'sendAction(event, "manual")' class="btn btn-primary btn-lg custom">Iniciar</button>
+						                	<div class="buttons-divider"></div>
+						                	<button id="stopManualButton" type ="button" onclick = 'sendAction(event, "stopManual")' class="btn btn-warning btn-lg custom" disabled>Salir del modo</button>
+						                </div>
+						            </div>
+						        </div>
+							</div>
+						</div>
+				    </div>
+				    
+	                <div class="row">
+	                	<div class="col-md-1">
+			    			<!-- JUST FOR LET SPACE IN LEFT SIDE-->
+			    		</div>
+			    		<div class="col-md-10">
+				    		<div class="panel panel-default">
+							  	<div class="panel-heading" align="center">
+							  		<h3> Reportes </h3><br />
+							  		<input type="hidden" id="micrometerStatus" value="<!--CPPCALL WebMicrometerStatus -->">
+							  	</div>
+							  	<div class="panel-body">
+					                <div class="row">
+								        <div style="display:flex; justify-content:flex-end; width:100%; padding:10px;">
+								            <a href="Resultados_de_prueba.csv" class="btn btn-primary">Descargar</a>
+								        </div>
+								    </div>
+					                <div class="row">
+					                	<div class="table-responsive" align = "center">
+									  		<table class="table table-striped" id="testResults" style="width: 75%;">
+									  			<thead>
+													<tr>
+														<th>FASE</th>
+												      	<th width="15%">SEGUNDOS</th>
+												      	<th width="15%">MILISEGUNDOS</th>
+												      	<th width="15%">MICROSEGUNDOS</th>
+												      	<th width="10%">APERTURA</th>
+												      	<th width="5%">CIERRE</th>
+												      	<th width="5%">CICLO</th>
+												      	<th width="10%">ALERTA</th>
+												    </tr>
+												</thead>
+												<tbody align = "center">
+													
+												</tbody>
+								  			</table>
+								  		</div>
+					                </div>
+							  	</div>
+							</div>
+						</div>
+						
+						<div class="col-md-1">
+							<!-- JUST FOR LET SPACE IN RIGHT SIDE-->
+			    		</div>
+	                </div>
+	            </div>
+	            <!-- /.box-body -->
+	        </div>
+	        <!-- /.box -->
+	    </section>
+	    <!-- /.content -->
+	</div>
+</body>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/menuResponsive.js"> </script>
+
+<script charset="utf-8">
+
+	var opertaionMode = "";
+	
+	function disableBtns(){
+		document.getElementById("manualButton").disabled = true;
+		document.getElementById("stopManualButton").disabled = false;
+	}
+	
+	function enableBtns(){
+		document.getElementById("manualButton").disabled = false;
+		document.getElementById("stopManualButton").disabled = true;
+	}
+	
+	function disableBtnsHoro(){
+		document.getElementById("openButton").disabled = true;
+		document.getElementById("closeButton").disabled = true;
+		document.getElementById("testButton").disabled = true;
+	}
+	
+	function enableBtnsHoro(){
+		document.getElementById("openButton").disabled = false;
+		document.getElementById("closeButton").disabled = false;
+		document.getElementById("testButton").disabled = false;
+	}
+	
+	function checkMode(){
+		if(opertaionMode == "Horometro"){
+			document.getElementById("openButton").disabled = false;
+			document.getElementById("closeButton").disabled = false;
+			document.getElementById("testButton").disabled = false;
+			document.getElementById("manualButton").disabled = true;
+			document.getElementById("stopManualButton").disabled = true;
+		}else if(opertaionMode == "Externo"){
+			document.getElementById("openButton").disabled = true;
+			document.getElementById("closeButton").disabled = true;
+			document.getElementById("testButton").disabled = true;
+			document.getElementById("manualButton").disabled = false;
+			document.getElementById("stopManualButton").disabled = true;
+		}
+	}
+
+	function sendAction(evt, action) {
+	  	evt.preventDefault();
+        var datos = {action:action};  //Serializamos sus datos
+        var url = "formProcess";
+	  	$.ajax({
+            url: url,    //Leerá la url en la etiqueta action del formulario
+            method: "POST", //Leerá el método en etiqueta method del formulario
+            data: datos,                //Variable serializada más arriba
+            success:function(datos){ //success es una funcion que se utiliza si el servidor retorna informacion
+		         if(datos != "200"){
+                	alert(datos);
+		         }else{
+		         	if(action == "manual"){
+		         		var tbodyRef = document.getElementById('testResults').getElementsByTagName('tbody')[0];
+	                	tbodyRef.innerHTML = "";
+		         		disableBtns();
+		         	}
+		         	if(action == "stopManual"){
+			     		enableBtns();
+			     	}
+		         }
+		    }
+        });
+	}
+
+	var actReq;
+	var actStatusReq;
+	var actModeStatusReq;
+	var actDigitalsReq;
+	window.onload = function () {
+        
+        opertaionMode = document.getElementById("modeValue").value;
+        
+        setInterval(function () { processPage('viewData/dataTableResults.html', actReq, getData, true) }, 1000)
+        processPage('viewData/dataTableResults.html', actReq, getData, false);
+        
+        setInterval(function () { processPage('viewData/statusCall.html', actStatusReq, getStatus, true) }, 1000)
+        processPage('viewData/statusCall.html', actStatusReq, getStatus, false);
+        
+        setInterval(function () { processPage('viewData/modeSpanCall.html', actModeStatusReq, getModeStatus, true) }, 1000)
+        processPage('viewData/modeSpanCall.html', actModeStatusReq, getModeStatus, false);
+        
+        //digitalsDataCall.html getDigitals actDigitalsReq
+        
+        setInterval(function () { processPage('viewData/digitalsDataCall.html', actDigitalsReq, getDigitals, true) }, 1000)
+        processPage('viewData/digitalsDataCall.html', actDigitalsReq, getDigitals, false);
+        
+        checkMode();
+        
+        if(document.getElementById('micrometerStatus').value == "Prueba manual"){
+        	disableBtns();
+        }
+        
+        if(document.getElementById("SpanInitialState").textContent == "0"){
+        	document.getElementById("SpanInitialState").textContent = "Cerrado";
+        }else{
+        	document.getElementById("SpanInitialState").textContent = "Abierto";
+        }
+    }
+    function processPage(url, req, fn, async) {
+        // Most browser support
+        if (window.XMLHttpRequest) {
+            req = new XMLHttpRequest();
+        }
+        // IE5, IE6 support
+        else if (window.ActiveXObject) {
+            req = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        if (req != null) {
+            req.onreadystatechange = function () { fn(req); };
+            req.open("GET", url, async);
+            req.send(null);
+        }
+        else {
+            alert("Browser not supported");
+        }
+    }
+	function getData(req) {
+        if (req.readyState == 4) { // Complete
+            if (req.status == 200) { // OK response
+                if(req.responseText != "No data"){
+                	if(req.responseText.includes('no iniciada')){
+                		let response = req.responseText;
+                		alert(response.replace(/(<([^>]+)>)/gi, ""));
+                	}else{
+                		//checkMode();
+	                	var tbodyRef = document.getElementById('testResults').getElementsByTagName('tbody')[0];
+	                	tbodyRef.innerHTML = "";
+	                	tbodyRef.innerHTML = req.responseText;
+	                	
+	                	window.location = 'Resultados_de_prueba.csv';
+                	}
+                }
+            }
+        }
+    }
+    
+    function getStatus(req) {
+        if (req.readyState == 4) { // Complete
+            if (req.status == 200) { // OK response
+            	if(document.getElementById("SpanStatus").textContent != req.responseText){
+                	document.getElementById("SpanStatus").textContent = req.responseText;
+                	if(req.responseText == "Prueba"){
+                		var tbodyRef = document.getElementById('testResults').getElementsByTagName('tbody')[0];
+	                	tbodyRef.innerHTML = "";
+                		disableBtnsHoro();
+                	}else{
+                		if(opertaionMode == "Horometro"){
+                			enableBtnsHoro();
+                		}
+                	}
+            	}
+            }
+        }
+    }
+    function getModeStatus(req) {
+        if (req.readyState == 4) { // Complete
+            if (req.status == 200) { // OK response
+            	if(opertaionMode != req.responseText){
+                	document.getElementById("SpanMode").textContent = req.responseText;
+                	opertaionMode = req.responseText;
+                	checkMode();
+            	}
+            }
+        }
+    }
+    
+    function getDigitals(req) {
+        if (req.readyState == 4) { // Complete
+            if (req.status == 200) { // OK response
+                document.getElementById("digitalsDiv").innerHTML = req.responseText;
+            }
+        }
+    }
+</script>
+
+</html>
